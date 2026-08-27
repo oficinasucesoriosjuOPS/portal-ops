@@ -245,6 +245,10 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--cream);color:var(--
 .footer span{color:var(--gold-mid);font-weight:600;}
 
 /* ====== DRIVE LINKS — REEMPLAZAR CON LINKS REALES ====== */
+.sfil{background:#fff;border:1px solid #cbd5e1;color:#475569;font-family:inherit;font-size:14px;font-weight:600;padding:.45rem 1rem;border-radius:20px;cursor:pointer;transition:.15s;}
+.sfil:hover{border-color:var(--teal);color:var(--teal);}
+.sfil.activo{background:var(--teal);border-color:var(--teal);color:#fff;}
+.sub-vacio{padding:1.2rem;color:#64748b;font-size:15px;}
 </style>
 </head>
 <body>
@@ -573,12 +577,16 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--cream);color:var(--
     <div class="sec-sub">Registro de subrogancias activas, programadas e historial</div>
     <a class="open-link" href="https://drive.google.com/drive/folders/1n_ptl9VrShWI6BNWcm_tLVNTUitMZX1h" target="_blank">📁 Abrir carpeta de Subrogancias en Drive</a>
     <div class="subsec">Estado actual</div>
-    <div class="sub-grid">
-      <div class="sub-card"><div class="sub-juzgado">Juzgado N° 1</div><div class="sub-juez">Dr. Villanueva</div><div class="sub-row"><span class="sub-label">Subrogante</span><span class="sub-value">Dra. Ramos</span></div><div class="sub-row"><span class="sub-label">Desde</span><span class="sub-value">01 mar 2026</span></div><div class="sub-row"><span class="sub-label">Hasta</span><span class="sub-value">31 mar 2026</span></div><div class="sub-row"><span class="sub-label">Estado</span><span class="sub-activa">Activa</span></div></div>
-      <div class="sub-card"><div class="sub-juzgado">Juzgado N° 3</div><div class="sub-juez">Dr. Ferreyra</div><div class="sub-row"><span class="sub-label">Subrogante</span><span class="sub-value">Dr. Montoya</span></div><div class="sub-row"><span class="sub-label">Desde</span><span class="sub-value">10 mar 2026</span></div><div class="sub-row"><span class="sub-label">Hasta</span><span class="sub-value">20 mar 2026</span></div><div class="sub-row"><span class="sub-label">Estado</span><span class="sub-vencida">Vencida</span></div></div>
-      <div class="sub-card"><div class="sub-juzgado">Juzgado N° 5</div><div class="sub-juez">Dr. Montoya</div><div class="sub-row"><span class="sub-label">Subrogante</span><span class="sub-value">Dra. Pereyra</span></div><div class="sub-row"><span class="sub-label">Desde</span><span class="sub-value">01 abr 2026</span></div><div class="sub-row"><span class="sub-label">Hasta</span><span class="sub-value">30 abr 2026</span></div><div class="sub-row"><span class="sub-label">Estado</span><span class="sub-proxima">Próxima</span></div></div>
+    <div class="sub-filtros" style="display:flex;gap:.5rem;flex-wrap:wrap;margin:.8rem 0 1rem">
+      <button class="sfil activo" data-f="todas" onclick="filtrarSub('todas',this)">Todas</button>
+      <button class="sfil" data-f="activa" onclick="filtrarSub('activa',this)">Activas</button>
+      <button class="sfil" data-f="proxima" onclick="filtrarSub('proxima',this)">Próximas</button>
+      <button class="sfil" data-f="vencida" onclick="filtrarSub('vencida',this)">Historial</button>
     </div>
-    <div class="info-bar"><span>ℹ️</span> Actualizá las subrogancias directamente en la carpeta de Drive. Los datos del cuadro se actualizan manualmente en el código.</div>
+    <div class="sub-grid" id="subGrid">
+      <div style="padding:1rem;color:#64748b">Cargando subrogancias…</div>
+    </div>
+    <div class="info-bar"><span>ℹ️</span> Los datos se cargan desde la planilla <strong>Subrogancias OPS</strong>. Al actualizar la planilla, el portal refleja los cambios en pocos minutos.</div>
   </div>
 
   <!-- LINKS DE REGISTROS -->
@@ -785,6 +793,108 @@ function filtrarActas(){
   document.getElementById('actasCount').textContent=v===rows.length?rows.length+' actas · mostrando todas':v+' de '+rows.length+' actas filtradas';
 }
 document.getElementById('pwdInput') && document.getElementById('pwdInput').addEventListener('keydown',function(e){if(e.key==='Escape')closeModalPwd();});
+
+// ====== SUBROGANCIAS DESDE PLANILLA ======
+const CSV_SUBROGANCIAS = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRJGt-HoccS3xnd4Pi8CjqI_9g4gno5pPeJEHQ7sRAu-kgQy5Xa1JVzQTX2xU4G2OB31c1uLakYE_ax/pub?gid=0&single=true&output=csv';
+let SUBS=[];
+
+function parseCSV(txt){
+  const filas=[];let campo='',fila=[],dentro=false;
+  for(let i=0;i<txt.length;i++){
+    const c=txt[i];
+    if(dentro){
+      if(c==='"'){ if(txt[i+1]==='"'){campo+='"';i++;} else dentro=false; }
+      else campo+=c;
+    }else{
+      if(c==='"')dentro=true;
+      else if(c===','){fila.push(campo);campo='';}
+      else if(c==='\n'||c==='\r'){
+        if(c==='\r'&&txt[i+1]==='\n')i++;
+        fila.push(campo);campo='';
+        if(fila.some(x=>x.trim()!==''))filas.push(fila);
+        fila=[];
+      }else campo+=c;
+    }
+  }
+  fila.push(campo);
+  if(fila.some(x=>x.trim()!==''))filas.push(fila);
+  return filas;
+}
+
+function aFecha(s){
+  if(!s)return null;
+  const p=s.trim().split(/[\/\-]/);
+  if(p.length!==3)return null;
+  const d=parseInt(p[0],10),m=parseInt(p[1],10),a=parseInt(p[2],10);
+  if(isNaN(d)||isNaN(m)||isNaN(a))return null;
+  const f=new Date(a,m-1,d);
+  return isNaN(f.getTime())?null:f;
+}
+
+const MESES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+function fmtFecha(f){
+  if(!f)return 'Sin definir';
+  return String(f.getDate()).padStart(2,'0')+' '+MESES[f.getMonth()]+' '+f.getFullYear();
+}
+
+function estadoDe(ini,fin){
+  const hoy=new Date();hoy.setHours(0,0,0,0);
+  if(ini&&ini>hoy)return 'proxima';
+  if(fin&&fin<hoy)return 'vencida';
+  return 'activa';
+}
+
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+function pintarSub(filtro){
+  const g=document.getElementById('subGrid');
+  if(!g)return;
+  const lista=filtro==='todas'?SUBS:SUBS.filter(s=>s.estado===filtro);
+  if(!lista.length){
+    g.innerHTML='<div class="sub-vacio">No hay subrogancias para mostrar en esta categoría.</div>';
+    return;
+  }
+  const etiq={activa:'Activa',proxima:'Próxima',vencida:'Vencida'};
+  g.innerHTML=lista.map(s=>
+    '<div class="sub-card"><div class="sub-juzgado">'+esc(s.juzgado)+'</div>'+
+    '<div class="sub-juez">'+esc(s.subrogante)+'</div>'+
+    '<div class="sub-row"><span class="sub-label">Desde</span><span class="sub-value">'+fmtFecha(s.ini)+'</span></div>'+
+    '<div class="sub-row"><span class="sub-label">Hasta</span><span class="sub-value">'+fmtFecha(s.fin)+'</span></div>'+
+    (s.obs?'<div class="sub-row"><span class="sub-label">Obs.</span><span class="sub-value">'+esc(s.obs)+'</span></div>':'')+
+    '<div class="sub-row"><span class="sub-label">Estado</span><span class="sub-'+s.estado+'">'+etiq[s.estado]+'</span></div></div>'
+  ).join('');
+}
+
+function filtrarSub(f,btn){
+  document.querySelectorAll('.sfil').forEach(b=>b.classList.remove('activo'));
+  if(btn)btn.classList.add('activo');
+  pintarSub(f);
+}
+
+function cargarSubrogancias(){
+  const g=document.getElementById('subGrid');
+  if(!g)return;
+  fetch(CSV_SUBROGANCIAS)
+    .then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.text();})
+    .then(txt=>{
+      const filas=parseCSV(txt);
+      if(filas.length<2){g.innerHTML='<div class="sub-vacio">La planilla no tiene subrogancias cargadas.</div>';return;}
+      SUBS=filas.slice(1).map(f=>{
+        const ini=aFecha(f[2]),fin=aFecha(f[3]);
+        return{juzgado:(f[0]||'').trim(),subrogante:(f[1]||'').trim(),ini:ini,fin:fin,obs:(f[4]||'').trim(),estado:estadoDe(ini,fin)};
+      }).filter(s=>s.juzgado||s.subrogante);
+      const orden={activa:0,proxima:1,vencida:2};
+      SUBS.sort((a,b)=>{
+        if(orden[a.estado]!==orden[b.estado])return orden[a.estado]-orden[b.estado];
+        return (b.ini?b.ini.getTime():0)-(a.ini?a.ini.getTime():0);
+      });
+      pintarSub('todas');
+    })
+    .catch(()=>{
+      g.innerHTML='<div class="sub-vacio">No se pudieron cargar las subrogancias. Verificá la conexión o consultá la carpeta de Drive.</div>';
+    });
+}
+cargarSubrogancias();
 </script>
 </body>
 </html>
