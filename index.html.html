@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Portal OPS — Oficina Judicial de Procesos Sucesorios</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --blue:#185FA5;--blue-lt:#E6F1FB;--blue-mid:#378ADD;--blue-dk:#0C447C;
+  --gold:#BA7517;--gold-lt:#FAEEDA;--gold-mid:#EF9F27;
+  --teal:#0F6E56;--teal-lt:#E1F5EE;
+  --purple:#534AB7;--purple-lt:#EEEDFE;
+  --coral:#993C1D;--coral-lt:#FAECE7;
+  --green:#27500A;--green-lt:#EAF3DE;
+  --navy:#042C53;--cream:#F4F7FB;
+  --muted:#5a6a7e;--border:rgba(24,95,165,0.14);--r:10px;
+}
+body{font-family:'Source Sans 3',sans-serif;background:var(--cream);color:var(--navy);min-height:100vh;}
+
+/* HEADER */
+.header{background:var(--blue-dk);color:white;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;border-bottom:3px solid var(--gold-mid);position:sticky;top:0;z-index:100;}
+.hbrand{display:flex;align-items:center;gap:11px;}
+.hemblem{width:36px;height:36px;border-radius:50%;border:2px solid var(--gold-mid);color:var(--gold-mid);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:13px;font-weight:600;flex-shrink:0;}
+.htitles h1{font-family:'Playfair Display',serif;font-size:14px;font-weight:500;color:white;}
+.htitles p{font-size:9.5px;color:rgba(255,255,255,0.5);letter-spacing:0.07em;text-transform:uppercase;margin-top:1px;}
+.hdate{font-size:11px;color:rgba(255,255,255,0.38);}
+.hback{display:none;align-items:center;gap:7px;cursor:pointer;color:rgba(255,255,255,0.7);font-size:12.5px;background:none;border:none;transition:color 0.15s;}
+.hback:hover{color:white;}
+.hback.vis{display:flex;}
+
+/* HOME */
+.home{padding:1.5rem;max-width:1200px;margin:0 auto;}
+.cumple-aviso{background:var(--gold-lt);border:1px solid var(--gold-mid);border-radius:var(--r);padding:.7rem 1rem;display:flex;align-items:center;gap:10px;margin-bottom:1.2rem;font-size:12.5px;color:var(--navy);}
+.cumple-text strong{color:var(--gold);}
+.home-title{font-family:'Playfair Display',serif;font-size:17px;color:var(--navy);margin-bottom:4px;}
+.home-sub{font-size:12px;color:var(--muted);margin-bottom:1.2rem;}
+.sec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;}
+.sec-card{background:white;border:1px solid var(--border);border-radius:11px;padding:1.1rem 1rem;cursor:pointer;transition:all 0.18s;border-top:4px solid var(--sc,var(--blue));display:flex;flex-direction:column;gap:6px;min-height:100px;}
+.sec-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(4,44,83,0.12);}
+.sc-top{display:flex;align-items:center;gap:8px;}
+.sc-ico{font-size:20px;flex-shrink:0;}
+.sc-name{font-size:12.5px;font-weight:600;color:var(--navy);}
+.sc-badge{background:#e53e3e;color:white;font-size:9px;font-weight:700;padding:1px 5px;border-radius:9px;margin-left:3px;}
+.sc-items{display:flex;flex-direction:column;gap:2px;}
+.sc-item{font-size:10.5px;color:var(--muted);display:flex;align-items:center;gap:4px;}
+.sc-dot{width:4px;height:4px;border-radius:50%;background:var(--sc,var(--blue));flex-shrink:0;}
+.sc-card-calidad{border-top-color:#7b1fa2 !important;background:linear-gradient(to bottom right,white,#f3e5ff08);}
+
+/* CONTENT */
+.content{display:none;flex-direction:column;}
+.content.vis{display:flex;}
+.main{flex:1;padding:1.5rem;max-width:1100px;width:100%;margin:0 auto;}
+.pane{display:none;}
+.pane.active{display:block;}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--navy);margin-bottom:3px;}
+.sec-sub{font-size:12px;color:var(--muted);margin-bottom:1.3rem;}
+.subsec{font-size:11px;font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:0.08em;margin:1.3rem 0 8px;padding-bottom:5px;border-bottom:1px solid var(--border);}
+
+/* NEWS */
+.news-list{display:flex;flex-direction:column;gap:8px;}
+.nitem{background:white;border:1px solid var(--border);border-radius:var(--r);padding:.9rem 1.1rem;transition:border-color 0.15s;cursor:pointer;}
+.nitem:hover{border-color:var(--gold-mid);}
+.nitem.cumple-item{border-color:var(--gold-mid);background:var(--gold-lt);}
+.nhead{display:flex;align-items:center;gap:7px;margin-bottom:4px;}
+.ntag{font-size:10.5px;font-weight:600;padding:2px 8px;border-radius:10px;}
+.ntag.urgente{background:#fef2f2;color:#a32d2d;}
+.ntag.circular{background:var(--blue-lt);color:var(--blue-dk);}
+.ntag.aviso{background:var(--gold-lt);color:var(--gold);}
+.ntag.cumple{background:var(--gold-lt);color:var(--gold);}
+.ndate{font-size:11px;color:var(--muted);margin-left:auto;}
+.ntitle{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:2px;}
+.nbody{font-size:12px;color:var(--muted);line-height:1.5;}
+
+/* CARDS */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;}
+.card{background:white;border:1px solid var(--border);border-radius:var(--r);padding:1rem;cursor:pointer;transition:all 0.16s;border-top:3px solid var(--card-color,var(--gold-mid));position:relative;overflow:visible;}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(4,44,83,0.1);}
+.card-ico{font-size:20px;margin-bottom:6px;}
+.card-name{font-size:12.5px;font-weight:600;color:var(--navy);margin-bottom:2px;}
+.card-info{font-size:11px;color:var(--muted);}
+.card-drop{display:none;position:absolute;top:calc(100% + 2px);left:0;right:0;background:white;border:1px solid var(--border);border-radius:0 0 var(--r) var(--r);z-index:30;box-shadow:0 8px 16px rgba(4,44,83,0.1);}
+.card:hover .card-drop{display:block;}
+.cd-item{padding:7px 11px;font-size:11px;color:var(--navy);border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:6px;transition:background 0.1s;}
+.cd-item:last-child{border-bottom:none;}
+.cd-item:hover{background:var(--blue-lt);}
+.cd-dot{width:4px;height:4px;border-radius:50%;background:var(--blue-mid);flex-shrink:0;}
+
+/* TABS */
+.tabs{display:flex;background:white;border:1px solid var(--border);border-radius:var(--r) var(--r) 0 0;overflow:hidden;}
+.tab-btn{flex:1;padding:11px 6px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;text-align:center;border-bottom:3px solid transparent;transition:all 0.15s;border-right:0.5px solid var(--border);background:none;font-family:'Source Sans 3',sans-serif;}
+.tab-btn:last-child{border-right:none;}
+.tab-btn:hover{color:var(--navy);background:var(--blue-lt);}
+.tab-btn.active{color:var(--blue-dk);background:var(--blue-lt);border-bottom-color:var(--gold-mid);}
+.tab-pane{display:none;padding:1.2rem;background:white;border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);}
+.tab-pane.active{display:block;}
+
+/* DRIVE BOX */
+.drive-box{background:white;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:10px;}
+.drive-bar{padding:9px 1rem;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.dbt{font-size:12.5px;font-weight:600;color:var(--navy);white-space:nowrap;}
+.dsearch{flex:1;min-width:90px;padding:6px 9px;border:1px solid var(--border);border-radius:7px;font-size:11.5px;background:var(--cream);outline:none;font-family:'Source Sans 3',sans-serif;}
+.dsearch:focus{border-color:var(--blue);}
+.dfilter{padding:6px 9px;border:1px solid var(--border);border-radius:7px;font-size:11.5px;background:var(--cream);outline:none;color:var(--navy);font-family:'Source Sans 3',sans-serif;cursor:pointer;}
+.frow{display:flex;align-items:center;gap:8px;padding:8px 1rem;border-bottom:0.5px solid var(--border);font-size:12px;cursor:pointer;transition:background 0.1s;}
+.frow:last-child{border-bottom:none;}
+.frow:hover{background:var(--blue-lt);}
+.frow.hrow{background:var(--cream);font-size:10.5px;font-weight:600;color:var(--muted);padding:5px 1rem;cursor:default;}
+.fname{flex:1;color:var(--navy);}
+.ftipo{font-size:10px;padding:2px 7px;border-radius:8px;font-weight:600;white-space:nowrap;}
+.ftipo.equipo{background:var(--blue-lt);color:var(--blue-dk);}
+.ftipo.referentes{background:var(--purple-lt);color:var(--purple);}
+.ftipo.jueces{background:var(--teal-lt);color:var(--teal);}
+.ftipo.otras{background:var(--gold-lt);color:var(--gold);}
+.ftipo.medicion{background:var(--teal-lt);color:var(--teal);}
+.ftipo.otro{background:var(--purple-lt);color:var(--purple);}
+.fdate{font-size:11px;color:var(--muted);white-space:nowrap;}
+.flock{font-size:11px;margin-left:2px;}
+.actas-count{font-size:11px;color:var(--muted);padding:6px 1rem;border-top:1px solid var(--border);background:var(--cream);}
+
+/* OPEN LINK BTN */
+.open-link{display:inline-flex;align-items:center;gap:7px;background:var(--blue);color:white;padding:9px 16px;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;margin-bottom:12px;transition:background 0.15s;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;}
+.open-link:hover{background:var(--blue-dk);}
+.open-link-outline{background:white;color:var(--blue);border:1px solid var(--blue);}
+.open-link-outline:hover{background:var(--blue-lt);}
+
+/* LINK CARDS */
+.link-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;}
+.link-card{background:white;border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.2rem;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all 0.15s;text-decoration:none;}
+.link-card:hover{background:var(--blue-lt);border-color:var(--blue);transform:translateY(-2px);}
+.link-card.destacado{border-left:4px solid var(--purple);border-color:var(--purple);}
+.link-card.destacado:hover{background:var(--purple-lt);}
+.link-ico{font-size:22px;flex-shrink:0;}
+.link-name{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:2px;}
+.link-desc{font-size:11px;color:var(--muted);}
+.link-arrow{font-size:14px;color:var(--blue);margin-left:auto;flex-shrink:0;}
+.link-tag{font-size:10px;background:var(--purple-lt);color:var(--purple);font-weight:600;padding:2px 6px;border-radius:6px;margin-top:3px;display:inline-block;}
+.link-note{background:var(--blue-lt);border:1px solid rgba(24,95,165,0.2);border-radius:var(--r);padding:.75rem 1rem;font-size:12px;color:var(--blue-dk);margin-bottom:1.2rem;display:flex;gap:8px;align-items:flex-start;}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(135px,1fr));gap:10px;margin-bottom:1.2rem;}
+.scard{background:white;border:1px solid var(--border);border-radius:var(--r);padding:.9rem;}
+.slabel{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;}
+.sval{font-size:22px;font-weight:300;color:var(--navy);font-family:'Playfair Display',serif;}
+.schg{font-size:10.5px;margin-top:2px;}
+.up{color:#0F6E56;}.dn{color:#a32d2d;}
+
+/* SUBROGANCIAS */
+.sub-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:1.3rem;}
+.sub-card{background:white;border:1px solid var(--border);border-radius:var(--r);padding:1.1rem;border-left:4px solid var(--coral);}
+.sub-juzgado{font-size:11px;font-weight:600;color:var(--coral);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;}
+.sub-juez{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:7px;}
+.sub-row{display:flex;justify-content:space-between;align-items:center;font-size:11px;padding:4px 0;border-bottom:0.5px solid var(--border);}
+.sub-row:last-child{border-bottom:none;}
+.sub-label{color:var(--muted);}
+.sub-value{font-weight:500;color:var(--navy);}
+.sub-activa{background:var(--teal-lt);color:var(--teal);font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px;}
+.sub-vencida{background:#fef2f2;color:#a32d2d;font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px;}
+.sub-proxima{background:var(--gold-lt);color:var(--gold);font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px;}
+
+/* CASO INEDITO */
+.caso-card{background:white;border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.1rem;margin-bottom:9px;transition:border-color 0.15s;}
+.caso-card:hover{border-color:var(--blue);}
+.caso-head{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.caso-num{font-size:10.5px;font-weight:600;color:white;background:var(--blue-dk);padding:2px 8px;border-radius:8px;}
+.caso-fecha{font-size:11px;color:var(--muted);margin-left:auto;}
+.caso-title{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:3px;}
+.caso-area{font-size:11px;color:var(--blue);font-weight:500;margin-bottom:4px;}
+.caso-body{font-size:12px;color:var(--muted);line-height:1.5;}
+.caso-tag{display:inline-block;font-size:10px;padding:2px 7px;border-radius:8px;font-weight:600;background:var(--purple-lt);color:var(--purple);margin-top:5px;}
+
+.info-bar{margin-top:9px;padding:8px 11px;background:white;border:1px solid var(--border);border-radius:var(--r);font-size:11.5px;color:var(--muted);display:flex;gap:7px;align-items:center;flex-wrap:wrap;}
+.carga-aviso{background:var(--blue-lt);border:1px solid rgba(24,95,165,0.2);border-radius:var(--r);padding:.75rem 1rem;font-size:12px;color:var(--blue-dk);margin-bottom:1.1rem;display:flex;gap:8px;}
+.carga-link{color:var(--blue);font-weight:600;cursor:pointer;text-decoration:underline;}
+
+/* TABLA */
+.comp-wrap{overflow-x:auto;border-radius:var(--r);border:1px solid var(--border);background:white;}
+.comp-table{width:100%;border-collapse:collapse;font-size:11px;min-width:560px;}
+.comp-table th{background:var(--blue-dk);color:white;padding:8px 10px;text-align:left;font-weight:500;font-size:10.5px;white-space:nowrap;}
+.comp-table th:first-child{background:var(--blue);min-width:130px;}
+.comp-table td{padding:8px 10px;border-bottom:0.5px solid var(--border);vertical-align:top;line-height:1.4;color:var(--navy);font-size:11px;}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table tr:hover td{background:#f0f6fd;}
+.comp-table td:first-child{font-weight:600;background:#EBF3FB;white-space:nowrap;}
+.jname{font-weight:600;font-size:11px;}
+.jjuzg{font-size:9.5px;opacity:0.6;margin-top:1px;}
+.diff{background:#fff8e1;}
+.same{color:var(--muted);font-style:italic;font-size:10.5px;}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(4,44,83,0.55);z-index:500;align-items:center;justify-content:center;padding:1.5rem;}
+.modal-overlay.open{display:flex;}
+.modal-box{background:white;border-radius:14px;width:100%;max-width:400px;overflow:hidden;border-top:4px solid #7b1fa2;box-shadow:0 20px 60px rgba(4,44,83,0.3);}
+.modal-head{padding:1rem 1.3rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.modal-head h3{font-family:'Playfair Display',serif;font-size:16px;color:var(--navy);flex:1;}
+.modal-body{padding:1.3rem;}
+.modal-body p{font-size:12.5px;color:var(--muted);margin-bottom:1rem;line-height:1.5;}
+.pwd-input{width:100%;padding:10px 13px;border:1px solid var(--border);border-radius:8px;font-size:14px;outline:none;font-family:'Source Sans 3',sans-serif;margin-bottom:8px;}
+.pwd-input:focus{border-color:#7b1fa2;}
+.pwd-error{font-size:12px;color:#a32d2d;margin-bottom:10px;display:none;}
+.modal-btns{display:flex;gap:8px;}
+.btn-pwd{flex:1;padding:10px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Source Sans 3',sans-serif;transition:all 0.15s;}
+.btn-enter{background:#7b1fa2;color:white;border:none;}
+.btn-enter:hover{background:#6a1b9a;}
+.btn-cancel{background:white;color:var(--muted);border:1px solid var(--border);}
+.btn-cancel:hover{border-color:var(--navy);color:var(--navy);}
+
+/* MODAL INFO */
+.modal-info{display:none;position:fixed;inset:0;background:rgba(4,44,83,0.45);z-index:500;align-items:center;justify-content:center;padding:1.5rem;}
+.modal-info.open{display:flex;}
+.minfo-box{background:white;border-radius:12px;width:100%;max-width:490px;overflow:hidden;border-top:3px solid var(--gold-mid);}
+.minfo-head{padding:.85rem 1.2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+.minfo-head h3{font-family:'Playfair Display',serif;font-size:15px;color:var(--navy);}
+.minfo-close{background:none;border:none;font-size:17px;color:var(--muted);cursor:pointer;}
+.minfo-body{padding:.9rem 1.2rem;max-height:400px;overflow-y:auto;}
+.mtabs{display:flex;border-bottom:1px solid var(--border);margin:-.9rem -1.2rem .9rem;}
+.mtab{padding:8px 14px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.15s;background:none;font-family:'Source Sans 3',sans-serif;}
+.mtab:hover{color:var(--navy);}
+.mtab.active{color:var(--blue-dk);border-bottom-color:var(--gold-mid);}
+.msec{display:none;}
+.msec.active{display:block;}
+.blabel{font-size:10.5px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.07em;margin:11px 0 4px;}
+.blabel:first-child{margin-top:0;}
+.btext{font-size:12px;color:var(--navy);line-height:1.6;}
+.vrow{display:flex;gap:8px;align-items:flex-start;padding:7px 0;border-bottom:0.5px solid var(--border);}
+.vrow:last-child{border-bottom:none;}
+.citem{display:flex;gap:7px;padding:7px 9px;background:var(--blue-lt);border-radius:7px;font-size:11.5px;color:var(--blue-dk);margin-bottom:5px;}
+.bmonth{font-size:10.5px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.07em;margin:11px 0 4px;}
+.bmonth:first-child{margin-top:0;}
+.brow{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:0.5px solid var(--border);}
+.brow:last-child{border-bottom:none;}
+.bav{width:28px;height:28px;border-radius:50%;background:var(--blue-lt);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--blue-dk);flex-shrink:0;}
+.bname{flex:1;font-size:12px;color:var(--navy);font-weight:500;}
+.bdate{font-size:11px;color:var(--muted);}
+.btoday{font-size:10px;background:var(--gold-lt);color:var(--gold);font-weight:600;padding:2px 6px;border-radius:7px;}
+.erow{display:flex;align-items:flex-start;gap:9px;padding:7px 0;border-bottom:0.5px solid var(--border);}
+.erow:last-child{border-bottom:none;}
+.eico{font-size:16px;flex-shrink:0;margin-top:1px;}
+.ename{font-size:12px;font-weight:600;color:var(--navy);}
+.erole{font-size:11px;color:var(--muted);margin-top:1px;}
+.ephone{font-size:11.5px;color:var(--blue);font-weight:500;margin-top:2px;}
+
+.footer{background:var(--blue-dk);color:rgba(255,255,255,0.35);padding:10px 1.5rem;font-size:10.5px;border-top:2px solid var(--gold-mid);display:flex;justify-content:space-between;}
+.footer span{color:var(--gold-mid);font-weight:600;}
+
+/* ====== DRIVE LINKS — REEMPLAZAR CON LINKS REALES ====== */
+.sfil{background:#fff;border:1px solid #cbd5e1;color:#475569;font-family:inherit;font-size:14px;font-weight:600;padding:.45rem 1rem;border-radius:20px;cursor:pointer;transition:.15s;}
+.sfil:hover{border-color:var(--teal);color:var(--teal);}
+.sfil.activo{background:var(--teal);border-color:var(--teal);color:#fff;}
+.sub-vacio{padding:1.2rem;color:#64748b;font-size:15px;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="hbrand">
+    <div class="hemblem">OPS</div>
+    <div class="htitles">
+      <h1>Oficina Judicial de Procesos Sucesorios</h1>
+      <p>Portal institucional de gestión</p>
+    </div>
+  </div>
+  <button class="hback" id="hback" onclick="goHome()">← Inicio</button>
+  <span class="hdate" id="hdate" id="fechaHoy"></span>
+</div>
+
+<!-- HOME -->
+<div class="home" id="homeView">
+  <div class="cumple-aviso" id="cumpleAviso" style="display:none">
+    <span style="font-size:18px">🎂</span>
+    <div class="cumple-text">Hoy cumple años <strong id="cumpleNombre"></strong> · ¡Felicitala/o!</div>
+  </div>
+  <div class="home-title">Portal institucional</div>
+  <div class="home-sub">Seleccioná una sección para acceder a sus contenidos</div>
+  <div class="sec-grid">
+
+    <div class="sec-card" style="--sc:#e53e3e" onclick="goSection('novedades')">
+      <div class="sc-top"><div class="sc-ico">🔔</div><div class="sc-name">Novedades y avisos <span class="sc-badge">3</span></div></div>
+      <div class="sc-items">
+        <div class="sc-item"><div class="sc-dot" style="background:#e53e3e"></div>Circulares · Comunicados</div>
+        <div class="sc-item"><div class="sc-dot" style="background:#e53e3e"></div>Avisos · Cumpleaños del día</div>
+      </div>
+    </div>
+
+    <div class="sec-card" style="--sc:#185FA5" onclick="goSection('institucional')">
+      <div class="sc-top"><div class="sc-ico">🏛️</div><div class="sc-name">Institucional</div></div>
+      <div class="sc-items">
+        <div class="sc-item"><div class="sc-dot"></div>Organigrama · Circuitos · Actas</div>
+        <div class="sc-item"><div class="sc-dot"></div>Directorio · Cumpleaños · Emergencias</div>
+      </div>
+    </div>
+
+    <div class="sec-card" style="--sc:#0C447C" onclick="goSection('consultas')">
+      <div class="sc-top"><div class="sc-ico">🔍</div><div class="sc-name">Consultas</div></div>
+      <div class="sc-items">
+        <div class="sc-item"><div class="sc-dot" style="background:#0C447C"></div>Posición de los jueces OPS</div>
+        <div class="sc-item"><div class="sc-dot" style="background:#0C447C"></div>Fallos de cámara · Casos inéditos</div>
+        <div class="sc-item"><div class="sc-dot" style="background:#0C447C"></div>Links de uso frecuente</div>
+      </div>
+    </div>
+
+    <div class="sec-card" style="--sc:#534AB7" onclick="goSection('dictamenes')">
+      <div class="sc-top"><div class="sc-ico">📝</div><div class="sc-name">Dictámenes</div></div>
+      <div class="sc-items">
+        <div class="sc-item"><div class="sc-dot" style="background:#534AB7"></div>Agente Fiscal</div>
+        <div class="sc-item"><div class="sc-dot" style="background:#534AB7"></div>Auditoría Contable · Asesor Menores</div>
+      </div>
+    </div>
+
+    <div class="sec-card" style="--sc:#0F6E56" onclick="goSection('indicadores')">
+      <div class="sc-top"><div class="sc-ico">📊</div><div class="sc-name">Indicadores</div></div>
+      <div class="sc-items">
+        <div class="sc-item"><div class="sc-dot" style="background:#0F6E56"></div>Promedios mensuales</div>
+        <div class="sc-item"><div class="sc-dot" style="background:#0F6E56"></div>Power BI · Tasas de riesgo operativa</div>
+      </div>
+    </div>
+
+    <div class="sec-card" style="--sc:#BA7517" onclick="goSection('instructivos')">
+      <div class="sc-top"><div class="sc-ico">📌</div><div class="sc-name">Instructivos</div></div>
+      <div class="sc-items">
+        <div class="sc-item"><div class="sc-dot" style="background:#BA7517"></div>Por circuito · Glosario SAE</div>
+      </div>
+    </div>
+
+    <div class="sec-card" style="--sc:#534AB7" onclick="goSection('formacion')">
+      <div class="sc-top"><div class="sc-ico">🎓</div><div class="sc-name">Formación</div></div>
+      <div class="sc-items">
+        <div class="sc-item"><div class="sc-dot" style="background:#534AB7"></div>Inducción · Cursos · Videoteca</div>
+        <div class="sc-item"><div class="sc-dot" style="background:#534AB7"></div>Biblioteca digital · Buenas prácticas</div>
+      </div>
+    </div>
+
+    <div class="sec-card" style="--sc:#993C1D" onclick="goSection('subrogancias')">
+      <div class="sc-top"><div class="sc-ico">🔁</div><div class="sc-name">Subrogancias</div></div>
+      <div class="sc-items">
+        <div class="sc-item"><div class="sc-dot" style="background:#993C1D"></div>Activas · Próximas · Historial</div>
+      </div>
+    </div>
+
+    <div class="sec-card" style="--sc:#27500A" onclick="goSection('links')">
+      <div class="sc-top"><div class="sc-ico">🔗</div><div class="sc-name">Links de registros</div></div>
+      <div class="sc-items">
+        <div class="sc-item"><div class="sc-dot" style="background:#27500A"></div>Forms varios · Casos inéditos</div>
+        <div class="sc-item"><div class="sc-dot" style="background:#27500A"></div>Hallazgos · Modelos de escritos</div>
+      </div>
+    </div>
+
+    <div class="sec-card sc-card-calidad" style="--sc:#7b1fa2" onclick="pedirPassword()">
+      <div class="sc-top"><div class="sc-ico">🔐</div><div class="sc-name">Equipo de Calidad</div></div>
+      <div class="sc-items">
+        <div class="sc-item"><div class="sc-dot" style="background:#7b1fa2"></div>Acceso exclusivo · 3 personas</div>
+        <div class="sc-item"><div class="sc-dot" style="background:#7b1fa2"></div>Normas de calidad</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content" id="contentView">
+<div class="main">
+
+  <!-- NOVEDADES -->
+  <div class="pane" id="p-novedades">
+    <div class="sec-title">Novedades y avisos</div>
+    <div class="sec-sub">Circulares, comunicados, avisos institucionales y cumpleaños del día</div>
+    <a class="open-link" href="https://drive.google.com/drive/folders/1PRf-6dP42SJGNW5CjX7qRmMy0IZ88I9C" target="_blank">📁 Abrir carpeta en Drive</a>
+    <div class="news-list">
+      <div class="nitem cumple-item" id="cumpleNews" style="display:none">
+        <div class="nhead"><span class="ntag cumple">🎂 Cumpleaños</span><span class="ndate" id="cumpleFecha"></span></div>
+        <div class="ntitle" id="cumpleTitulo"></div>
+        <div class="nbody" id="cumpleArea"></div>
+      </div>
+      <div class="nitem"><div class="nhead"><span class="ntag urgente">Urgente</span><span class="ndate">15 mar 2026</span></div><div class="ntitle">Modificación del plazo de inscripción — Res. 1247/2025</div><div class="nbody">Se amplía el plazo de inscripción de herederos a 60 días hábiles según la Resolución 1247/2025.</div></div>
+      <div class="nitem"><div class="nhead"><span class="ntag circular">Circular</span><span class="ndate">10 mar 2026</span></div><div class="ntitle">Circular N° 08/2026 — Criterios de prioridad en expedientes complejos</div><div class="nbody">Nuevos criterios de prioridad para expedientes sucesorios con múltiples herederos.</div></div>
+      <div class="nitem"><div class="nhead"><span class="ntag aviso">Aviso</span><span class="ndate">05 mar 2026</span></div><div class="ntitle">Jornada de actualización — Sucesiones internacionales · 28 de marzo</div><div class="nbody">Materiales disponibles en la sección Formación.</div></div>
+    </div>
+  </div>
+
+  <!-- INSTITUCIONAL -->
+  <div class="pane" id="p-institucional">
+    <div class="sec-title">Institucional</div>
+    <div class="sec-sub">Estructura, identidad y documentos organizacionales</div>
+    <div class="subsec">Documentos institucionales</div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:1.3rem;">
+      <a class="open-link open-link-outline" href="https://drive.google.com/file/d/1AygN2mGzM23ccZacB_BtGiO0T1fci-WY/view" target="_blank">📄 Documento 1</a>
+      <a class="open-link open-link-outline" href="https://drive.google.com/file/d/1_wHOc_kAr78Teb2SF9ckB47Gsee0pe1z/view" target="_blank">📄 Documento 2</a>
+      <a class="open-link open-link-outline" href="https://docs.google.com/document/d/122swG7bN7abmq8qETufEhkY4M4g43tKiqlAYUmEbn3M/edit" target="_blank">📝 Documento 3</a>
+    </div>
+    <div class="subsec">Organización</div>
+    <div class="grid">
+      <div class="card" style="--card-color:#185FA5"><div class="card-ico">🏛️</div><div class="card-name">Organigrama OPS</div><div class="card-info">Estructura y dependencias</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Estructura jerárquica</div><div class="cd-item"><div class="cd-dot"></div>Dependencias funcionales</div></div></div>
+      <div class="card" style="--card-color:#378ADD"><div class="card-ico">🔄</div><div class="card-name">Circuitos por áreas</div><div class="card-info">Flujos de trabajo</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Mesa de entradas</div><div class="cd-item"><div class="cd-dot"></div>Área jurídica</div><div class="cd-item"><div class="cd-dot"></div>Administración</div></div></div>
+      <div class="card" style="--card-color:#0F6E56" onclick="openModal('identidad')"><div class="card-ico">🎯</div><div class="card-name">Misión, visión, valores y calidad</div><div class="card-info">Ver detalle →</div></div>
+      <div class="card" style="--card-color:#854F0B" onclick="openModal('directorio')"><div class="card-ico">👥</div><div class="card-name">Directorio de personal</div><div class="card-info">Ver listado →</div></div>
+      <div class="card" style="--card-color:#BA7517" onclick="openModal('cumples')"><div class="card-ico">🎂</div><div class="card-name">Cumpleaños</div><div class="card-info">Ver fechas →</div></div>
+      <div class="card" style="--card-color:#a32d2d" onclick="openModal('emergencias')"><div class="card-ico">🚨</div><div class="card-name">Contactos de emergencia</div><div class="card-info">Ver listado →</div></div>
+    </div>
+    <div class="subsec">Actas</div>
+    <div class="drive-box">
+      <div class="drive-bar">
+        <span class="dbt">📋 Actas</span>
+        <input class="dsearch" id="actaSearch" placeholder="Buscar..." oninput="filtrarActas()"/>
+        <select class="dfilter" id="fTipo" onchange="filtrarActas()">
+          <option value="">Todos los tipos</option>
+          <option value="equipo">Equipo completo</option>
+          <option value="referentes">Referentes</option>
+          <option value="jueces">Con jueces</option>
+          <option value="otras">Otras</option>
+        </select>
+        <select class="dfilter" id="fPer" onchange="filtrarActas()">
+          <option value="">Todo el período</option>
+          <option value="2026-03">Marzo 2026</option>
+          <option value="2026-02">Febrero 2026</option>
+          <option value="2026-01">Enero 2026</option>
+        </select>
+      </div>
+      <div class="frow hrow"><span style="width:16px"></span><span class="fname">Archivo</span><span style="width:110px;font-size:10.5px;font-weight:600;color:var(--muted)">Tipo</span><span class="fdate">Fecha</span></div>
+      <div id="listaActas">
+        <div class="frow" data-tipo="equipo" data-per="2026-03" onclick="window.open('https://drive.google.com/drive/folders/1OXsq60R-khyMQb430W299i1GEiOl_QyO','_blank')"><span>📋</span><span class="fname">Acta_EQUIPO_14-03-2026.pdf</span><span class="ftipo equipo">Equipo completo</span><span class="fdate">14 mar 2026</span></div>
+        <div class="frow" data-tipo="referentes" data-per="2026-03" onclick="window.open('https://drive.google.com/drive/folders/1OXsq60R-khyMQb430W299i1GEiOl_QyO','_blank')"><span>📋</span><span class="fname">Acta_REFERENTES_07-03-2026.pdf</span><span class="ftipo referentes">Referentes</span><span class="fdate">07 mar 2026</span></div>
+        <div class="frow" data-tipo="jueces" data-per="2026-03" onclick="window.open('https://drive.google.com/drive/folders/1OXsq60R-khyMQb430W299i1GEiOl_QyO','_blank')"><span>📋</span><span class="fname">Acta_JUECES_03-03-2026.pdf</span><span class="ftipo jueces">Con jueces</span><span class="fdate">03 mar 2026</span></div>
+        <div class="frow" data-tipo="equipo" data-per="2026-02" onclick="window.open('https://drive.google.com/drive/folders/1OXsq60R-khyMQb430W299i1GEiOl_QyO','_blank')"><span>📋</span><span class="fname">Acta_EQUIPO_28-02-2026.pdf</span><span class="ftipo equipo">Equipo completo</span><span class="fdate">28 feb 2026</span></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 1rem;border-top:1px solid var(--border);background:var(--cream);">
+        <span style="font-size:11px;color:var(--muted)" id="actasCount">4 actas · mostrando todas</span>
+        <a href="https://drive.google.com/drive/folders/1OXsq60R-khyMQb430W299i1GEiOl_QyO" target="_blank" style="font-size:11px;color:var(--blue);text-decoration:none;font-weight:500;">Ver todas en Drive →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONSULTAS -->
+  <div class="pane" id="p-consultas">
+    <div class="sec-title">Consultas</div>
+    <div class="sec-sub">Posición de los jueces · fallos de cámara · casos inéditos · links de uso frecuente</div>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('jueces',this,'cons')">⚖️ Posición de los jueces</button>
+      <button class="tab-btn" onclick="switchTab('fallos',this,'cons')">📊 Fallos de cámara</button>
+      <button class="tab-btn" onclick="switchTab('ineditos',this,'cons')">💡 Casos inéditos</button>
+      <button class="tab-btn" onclick="switchTab('frecuente',this,'cons')">🔗 Links de uso frecuente</button>
+    </div>
+    <div class="tab-pane active" id="cons-jueces">
+      <div class="comp-wrap">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Materia</th>
+              <th><div class="jname">Dr. Villanueva</div><div class="jjuzg">Juzgado N° 1</div></th>
+              <th><div class="jname">Dra. Ramos</div><div class="jjuzg">Juzgado N° 2</div></th>
+              <th><div class="jname">Dr. Ferreyra</div><div class="jjuzg">Juzgado N° 3</div></th>
+              <th><div class="jname">Dra. Pereyra</div><div class="jjuzg">Juzgado N° 4</div></th>
+              <th><div class="jname">Dr. Montoya</div><div class="jjuzg">Juzgado N° 5</div></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Plazo contestación vistas</td><td class="diff">10 días hábiles. Sin prórrogas.</td><td>5 días hábiles</td><td>5 días hábiles</td><td>5 días hábiles</td><td class="diff">Días hábiles judiciales estrictos</td></tr>
+            <tr><td>Notificaciones</td><td class="diff">Cédula papel obligatoria</td><td class="same">Notif. electrónica</td><td class="same">Notif. electrónica</td><td class="same">Notif. electrónica</td><td class="same">Notif. electrónica</td></tr>
+            <tr><td>Publicación edictos</td><td class="same">1 día (ley)</td><td class="diff">3 días consecutivos</td><td class="same">1 día (ley)</td><td class="same">1 día (ley)</td><td class="same">1 día (ley)</td></tr>
+            <tr><td>Tasación inmuebles</td><td class="same">Oficial o privado</td><td class="diff">Solo perito oficial PJ</td><td class="same">Oficial o privado</td><td class="diff">Solo valuación fiscal</td><td class="same">Oficial o privado</td></tr>
+            <tr><td>Cert. dominio</td><td class="same">90 días (código)</td><td class="same">90 días</td><td class="same">90 días</td><td class="diff">30 días (propio)</td><td class="same">90 días</td></tr>
+            <tr><td>Peritos</td><td class="same">Oficial o de parte</td><td class="same">Oficial o de parte</td><td class="same">Oficial o de parte</td><td class="same">Oficial o de parte</td><td class="diff">Solo lista oficial</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="info-bar" style="margin-top:8px"><span style="width:11px;height:11px;background:#fff8e1;border:1px solid #EF9F27;border-radius:2px;display:inline-block;flex-shrink:0"></span> Amarillo: criterio que se aparta del estándar general.</div>
+    </div>
+    <div class="tab-pane" id="cons-fallos">
+      <a class="open-link" href="https://docs.google.com/spreadsheets/d/18tordJRCFSLoC6loRn4pIdX34spIqpprYmJRiWgyMHA/edit" target="_blank">📊 Abrir planilla de fallos en Google Sheets</a>
+      <div class="info-bar"><span>ℹ️</span> La planilla se abre en Google Sheets con todos los fallos de cámara actualizados. Solo lectura para los operadores.</div>
+    </div>
+    <div class="tab-pane" id="cons-ineditos">
+      <div class="carga-aviso"><span>💡</span><div>¿Encontraste un caso sin precedente? Cargalo desde <span class="carga-link" onclick="goSection('links')">Links de registros → Casos inéditos</span> y aparecerá acá.</div></div>
+      <div class="caso-card"><div class="caso-head"><span class="caso-num">CI-003</span><span class="caso-fecha">12 mar 2026</span></div><div class="caso-title">Sucesión con heredero declarado ausente con presunción de fallecimiento</div><div class="caso-area">Juzgado N° 2 · Dra. Ramos</div><div class="caso-body">Se suspendió la declaratoria hasta resolución definitiva del juicio de ausencia.</div><span class="caso-tag">Sin precedente en la OPS</span></div>
+      <div class="caso-card"><div class="caso-head"><span class="caso-num">CI-002</span><span class="caso-fecha">28 feb 2026</span></div><div class="caso-title">Bien inmueble en zona de litigio internacional</div><div class="caso-area">Juzgado N° 4 · Dra. Pereyra</div><div class="caso-body">Se requirió dictamen especial del Ministerio de Relaciones Exteriores antes de continuar.</div><span class="caso-tag">Requirió intervención externa</span></div>
+      <div class="caso-card"><div class="caso-head"><span class="caso-num">CI-001</span><span class="caso-fecha">10 feb 2026</span></div><div class="caso-title">Heredero único es una persona jurídica extranjera sin representación local</div><div class="caso-area">Juzgado N° 1 · Dr. Villanueva</div><div class="caso-body">Se exigió constitución de domicilio procesal en Argentina antes de dar curso al expediente.</div><span class="caso-tag">Criterio adoptado por la OPS</span></div>
+    </div>
+    <div class="tab-pane" id="cons-frecuente">
+      <div class="link-note"><span>🔗</span> Links de acceso frecuente para el trabajo diario. Reemplazá cada link con los sistemas reales que usan.</div>
+      <div class="link-grid">
+        <a class="link-card" href="#" target="_blank"><div class="link-ico">🖥️</div><div><div class="link-name">Sistema de gestión judicial</div><div class="link-desc">Acceso al sistema principal</div></div><div class="link-arrow">↗</div></a>
+        <a class="link-card" href="#" target="_blank"><div class="link-ico">📋</div><div><div class="link-name">Sistema SAE</div><div class="link-desc">Gestión de trámites</div></div><div class="link-arrow">↗</div></a>
+        <a class="link-card" href="#" target="_blank"><div class="link-ico">🔎</div><div><div class="link-name">Consulta de expedientes</div><div class="link-desc">Búsqueda por número</div></div><div class="link-arrow">↗</div></a>
+        <a class="link-card" href="#" target="_blank"><div class="link-ico">📰</div><div><div class="link-name">Boletín Oficial</div><div class="link-desc">Publicaciones oficiales</div></div><div class="link-arrow">↗</div></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DICTAMENES -->
+  <div class="pane" id="p-dictamenes">
+    <div class="sec-title">Dictámenes</div>
+    <div class="sec-sub">Dictámenes por organismo · carpeta Drive</div>
+    <a class="open-link" href="https://drive.google.com/drive/folders/1ynOGygeBzquWJI5BSup9e_CTp9A-s89u" target="_blank">📁 Abrir carpeta de Dictámenes en Drive</a>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('fiscal',this,'dict')">Agente Fiscal</button>
+      <button class="tab-btn" onclick="switchTab('auditoria',this,'dict')">Auditoría Contable</button>
+      <button class="tab-btn" onclick="switchTab('menores',this,'dict')">Asesor de Menores</button>
+    </div>
+    <div class="tab-pane active" id="dict-fiscal">
+      <div class="frow hrow"><span style="width:16px"></span><span class="fname">Archivo</span><span class="fdate">Fecha</span></div>
+      <div class="frow" onclick="window.open('https://drive.google.com/drive/folders/1ynOGygeBzquWJI5BSup9e_CTp9A-s89u','_blank')"><span>📄</span><span class="fname">Dictamen_Fiscal_Exp2043-2026.pdf</span><span class="fdate">10 mar 2026</span></div>
+      <div class="frow" onclick="window.open('https://drive.google.com/drive/folders/1ynOGygeBzquWJI5BSup9e_CTp9A-s89u','_blank')"><span>📄</span><span class="fname">Dictamen_Fiscal_Exp1987-2026.pdf</span><span class="fdate">02 mar 2026</span></div>
+    </div>
+    <div class="tab-pane" id="dict-auditoria">
+      <div class="frow hrow"><span style="width:16px"></span><span class="fname">Archivo</span><span class="fdate">Fecha</span></div>
+      <div class="frow" onclick="window.open('https://drive.google.com/drive/folders/1ynOGygeBzquWJI5BSup9e_CTp9A-s89u','_blank')"><span>📄</span><span class="fname">Dictamen_Auditoria_Exp2043-2026.pdf</span><span class="fdate">12 mar 2026</span></div>
+    </div>
+    <div class="tab-pane" id="dict-menores">
+      <div class="frow hrow"><span style="width:16px"></span><span class="fname">Archivo</span><span class="fdate">Fecha</span></div>
+      <div class="frow" onclick="window.open('https://drive.google.com/drive/folders/1ynOGygeBzquWJI5BSup9e_CTp9A-s89u','_blank')"><span>📄</span><span class="fname">Dictamen_Menores_Exp1987-2026.pdf</span><span class="fdate">05 mar 2026</span></div>
+    </div>
+    <div class="info-bar" style="margin-top:9px"><span>ℹ️</span> Los nombres de archivo son de ejemplo. Al hacer clic se abre la carpeta real en Drive donde están los dictámenes.</div>
+  </div>
+
+  <!-- INDICADORES -->
+  <div class="pane" id="p-indicadores">
+    <div class="sec-title">Indicadores de gestión</div>
+    <div class="sec-sub">Actualizado mensualmente · Fuente: Drive OPS</div>
+    <div class="stats">
+      <div class="scard"><div class="slabel">Expedientes activos</div><div class="sval">1.284</div><div class="schg up">↑ +4,2% vs mes anterior</div></div>
+      <div class="scard"><div class="slabel">Resueltos este mes</div><div class="sval">86</div><div class="schg up">↑ +12% vs objetivo</div></div>
+      <div class="scard"><div class="slabel">Tiempo prom. resolución</div><div class="sval">47d</div><div class="schg dn">↓ mejoró 3 días</div></div>
+      <div class="scard"><div class="slabel">Audiencias programadas</div><div class="sval">23</div><div class="schg">Próximos 15 días</div></div>
+      <div class="scard"><div class="slabel">Tasa de resolución</div><div class="sval">78%</div><div class="schg up">↑ Meta: 75%</div></div>
+    </div>
+    <div class="subsec">Promedios mensuales</div>
+    <a class="open-link" href="https://docs.google.com/spreadsheets/d/1B6mJyb_JN3C6WOCOv_IPs_Tk36VL_IT4XwidyqCb8LM/edit" target="_blank">📊 Abrir planilla de indicadores en Google Sheets</a>
+    <div class="subsec">Power BI</div>
+    <div class="link-grid" style="margin-bottom:1.2rem">
+      <a class="link-card" href="#" target="_blank"><div class="link-ico">📈</div><div><div class="link-name">Dashboard Power BI</div><div class="link-desc">Tablero de indicadores interactivo</div></div><div class="link-arrow">↗</div></a>
+    </div>
+    <div class="subsec">Tasas de riesgo operativa</div>
+    <div class="link-grid">
+      <a class="link-card" href="#" target="_blank"><div class="link-ico">⚠️</div><div><div class="link-name">Matriz de riesgo operativo</div><div class="link-desc">Tasas y umbrales vigentes</div></div><div class="link-arrow">↗</div></a>
+    </div>
+    <div class="info-bar" style="margin-top:1rem"><span>ℹ️</span> Reemplazá los links de Power BI y Riesgo Operativo con los links reales una vez que los tengas disponibles.</div>
+  </div>
+
+  <!-- INSTRUCTIVOS -->
+  <div class="pane" id="p-instructivos">
+    <div class="sec-title">Instructivos</div>
+    <div class="sec-sub">Organizados por circuito · incluye Glosario SAE</div>
+    <div class="subsec">Circuitos</div>
+    <div class="grid" style="margin-bottom:1.2rem">
+      <div class="card" style="--card-color:#0F6E56"><div class="card-ico">📌</div><div class="card-name">Apertura de expediente</div><div class="card-info">Circuito de inicio</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Checklist inicial</div><div class="cd-item"><div class="cd-dot"></div>Documentación requerida</div></div></div>
+      <div class="card" style="--card-color:#185FA5"><div class="card-ico">📌</div><div class="card-name">Notificación a herederos</div><div class="card-info">Circuito de notificación</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Cédulas y edictos</div><div class="cd-item"><div class="cd-dot"></div>Notificación electrónica</div></div></div>
+      <div class="card" style="--card-color:#534AB7"><div class="card-ico">📌</div><div class="card-name">Audiencias</div><div class="card-info">Circuito de audiencias</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Convocatoria</div><div class="cd-item"><div class="cd-dot"></div>Labramiento de acta</div></div></div>
+      <div class="card" style="--card-color:#854F0B"><div class="card-ico">📌</div><div class="card-name">Cierre de expediente</div><div class="card-info">Circuito de cierre</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Documentación final</div><div class="cd-item"><div class="cd-dot"></div>Archivo físico y digital</div></div></div>
+      <div class="card" style="--card-color:#378ADD"><div class="card-ico">📌</div><div class="card-name">Sistema informático</div><div class="card-info">Circuito transversal</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Carga de expedientes</div><div class="cd-item"><div class="cd-dot"></div>Consultas y reportes</div></div></div>
+      <div class="card" style="--card-color:#1D9E75"><div class="card-ico">📌</div><div class="card-name">Gestión documental</div><div class="card-info">Circuito transversal</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Escaneo y nomenclatura</div><div class="cd-item"><div class="cd-dot"></div>Carga en Drive</div></div></div>
+    </div>
+    <div class="subsec">Glosario SAE</div>
+    <a class="open-link" href="https://docs.google.com/spreadsheets/d/1EQOqBYrC9HphYYugRVH8ktp0RGFGo7X8ZQFCaSnfWC4/edit" target="_blank">📖 Abrir Glosario SAE en Google Sheets</a>
+  </div>
+
+  <!-- FORMACIÓN -->
+  <div class="pane" id="p-formacion">
+    <div class="sec-title">Formación</div>
+    <div class="sec-sub">Capacitaciones, inducción y recursos del personal</div>
+    <a class="open-link" href="https://drive.google.com/drive/folders/1bcC8KijFf4TVAF6ZEe32WHBNNAloNmSq" target="_blank">📁 Abrir carpeta de Formación en Drive</a>
+    <div class="subsec">Personal nuevo</div>
+    <div class="grid">
+      <div class="card" style="--card-color:#0C447C"><div class="card-ico">🚀</div><div class="card-name">Inducción</div><div class="card-info">Bienvenida y primeros pasos</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Guía de bienvenida</div><div class="cd-item"><div class="cd-dot"></div>Presentación de la OPS</div><div class="cd-item"><div class="cd-dot"></div>Accesos y sistemas</div></div></div>
+    </div>
+    <div class="subsec">Capacitación continua</div>
+    <div class="grid" style="margin-bottom:1.2rem">
+      <div class="card" style="--card-color:#185FA5"><div class="card-ico">🎓</div><div class="card-name">Cursos internos</div><div class="card-info">Organizados por la OPS</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Presenciales</div><div class="cd-item"><div class="cd-dot"></div>Virtuales</div></div></div>
+      <div class="card" style="--card-color:#534AB7"><div class="card-ico">🎥</div><div class="card-name">Videoteca</div><div class="card-info">Jornadas y seminarios</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Grabaciones de jornadas</div><div class="cd-item"><div class="cd-dot"></div>Seminarios externos</div></div></div>
+      <div class="card" style="--card-color:#0F6E56"><div class="card-ico">📖</div><div class="card-name">Biblioteca digital</div><div class="card-info">Códigos y manuales</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Códigos vigentes</div><div class="cd-item"><div class="cd-dot"></div>Manuales de procedimiento</div></div></div>
+      <div class="card" style="--card-color:#1D9E75"><div class="card-ico">🌟</div><div class="card-name">Buenas prácticas</div><div class="card-info">Experiencias y recomendaciones</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Atención al ciudadano</div><div class="cd-item"><div class="cd-dot"></div>Gestión de expedientes</div></div></div>
+    </div>
+  </div>
+
+  <!-- SUBROGANCIAS -->
+  <div class="pane" id="p-subrogancias">
+    <div class="sec-title">Subrogancias</div>
+    <div class="sec-sub">Registro de subrogancias activas, programadas e historial</div>
+    <a class="open-link" href="https://drive.google.com/drive/folders/1n_ptl9VrShWI6BNWcm_tLVNTUitMZX1h" target="_blank">📁 Abrir carpeta de Subrogancias en Drive</a>
+    <div class="subsec">Estado actual</div>
+    <div class="sub-filtros" style="display:flex;gap:.5rem;flex-wrap:wrap;margin:.8rem 0 1rem">
+      <button class="sfil activo" data-f="todas" onclick="filtrarSub('todas',this)">Todas</button>
+      <button class="sfil" data-f="activa" onclick="filtrarSub('activa',this)">Activas</button>
+      <button class="sfil" data-f="proxima" onclick="filtrarSub('proxima',this)">Próximas</button>
+      <button class="sfil" data-f="vencida" onclick="filtrarSub('vencida',this)">Historial</button>
+    </div>
+    <div class="sub-grid" id="subGrid">
+      <div style="padding:1rem;color:#64748b">Cargando subrogancias…</div>
+    </div>
+    <div class="info-bar"><span>ℹ️</span> Los datos se cargan desde la planilla <strong>Subrogancias OPS</strong>. Al actualizar la planilla, el portal refleja los cambios en pocos minutos.</div>
+  </div>
+
+  <!-- LINKS DE REGISTROS -->
+  <div class="pane" id="p-links">
+    <div class="sec-title">Links de registros</div>
+    <div class="sec-sub">Accesos directos a formularios y registros del equipo</div>
+    <div class="link-note"><span>ℹ️</span> Hacé clic en el formulario, completalo y envialo. Los datos quedan registrados para consulta del equipo.</div>
+    <div class="subsec">Forms varios</div>
+    <div class="link-grid" style="margin-bottom:1.2rem">
+      <a class="link-card" href="https://docs.google.com/forms/d/e/1FAIpQLSfiRjPcr2jXa-7JEwMp6aplKLrHUZK5smyDd30g78OwE_DIAw/viewform?usp=sharing&ouid=115543256797684784371 " target="_blank"><div class="link-ico">📋</div><div><div class="link-name">Formulario 1</div><div class="link-desc">Reemplazar con link real</div></div><div class="link-arrow">↗</div></a>
+      <a class="link-card" href="https://docs.google.com/forms/d/e/1FAIpQLSfhEs79xg1-Qvqz8hpR91BYq23s5bBBP8Nu-bSJNLEGiOEIEg/viewform?usp=sharing&ouid=115543256797684784371 " target="_blank"><div class="link-ico">📋</div><div><div class="link-name">Formulario 2</div><div class="link-desc">Reemplazar con link real</div></div><div class="link-arrow">↗</div></a>
+    </div>
+    <div class="subsec">Casos inéditos</div>
+    <div class="link-grid" style="margin-bottom:1.2rem">
+      <a class="link-card destacado" href="#" target="_blank"><div class="link-ico">💡</div><div><div class="link-name">Cargar caso inédito</div><div class="link-desc">Se consulta en Consultas → Casos inéditos</div><div class="link-tag">→ aparece en Consultas</div></div><div class="link-arrow">↗</div></a>
+    </div>
+    <div class="subsec">Hallazgos y sugerencias</div>
+    <div class="link-grid" style="margin-bottom:1.2rem">
+      <a class="link-card" href="#" target="_blank"><div class="link-ico">💬</div><div><div class="link-name">Formulario de hallazgos</div><div class="link-desc">Reportar hallazgos y sugerencias de mejora</div></div><div class="link-arrow">↗</div></a>
+    </div>
+    <div class="subsec">Modelos de escritos</div>
+    <div class="link-grid">
+      <a class="link-card" href="#" target="_blank"><div class="link-ico">📝</div><div><div class="link-name">Carpeta de modelos</div><div class="link-desc">Plantillas y modelos de escritos</div></div><div class="link-arrow">↗</div></a>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div><span>OPS</span> · Oficina Judicial de Procesos Sucesorios · Portal institucional</div>
+  <div>Acceso restringido — uso exclusivo del personal</div>
+  <div>2026</div>
+</div>
+
+<!-- MODAL PASSWORD CALIDAD -->
+<div class="modal-overlay" id="modalPwd">
+  <div class="modal-box">
+    <div class="modal-head">
+      <span style="font-size:22px">🔐</span>
+      <h3>Equipo de Calidad</h3>
+    </div>
+    <div class="modal-body">
+      <p>Esta sección es de acceso exclusivo. Ingresá la contraseña para continuar.</p>
+      <input type="password" class="pwd-input" id="pwdInput" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkPwd()"/>
+      <div class="pwd-error" id="pwdError">Contraseña incorrecta. Intentá de nuevo.</div>
+      <div class="modal-btns">
+        <button class="btn-pwd btn-cancel" onclick="closeModalPwd()">Cancelar</button>
+        <button class="btn-pwd btn-enter" onclick="checkPwd()">Ingresar →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODALES INFO -->
+<div class="modal-info" id="modal-identidad">
+  <div class="minfo-box">
+    <div class="minfo-head"><h3>Identidad institucional</h3><button class="minfo-close" onclick="closeModal('identidad')">✕</button></div>
+    <div class="minfo-body">
+      <div class="mtabs"><button class="mtab active" onclick="mtab('mision',this)">Misión y visión</button><button class="mtab" onclick="mtab('valores',this)">Valores</button><button class="mtab" onclick="mtab('calidad',this)">Política de calidad</button></div>
+      <div class="msec active" id="ms-mision"><div class="blabel">Misión</div><div class="btext">Garantizar la gestión eficiente y transparente de los procesos sucesorios, asegurando el acceso equitativo de los ciudadanos a sus derechos patrimoniales.</div><div class="blabel">Visión</div><div class="btext">Ser una oficina de referencia en gestión judicial, reconocida por su profesionalismo, celeridad y compromiso con el servicio público.</div></div>
+      <div class="msec" id="ms-valores"><div class="vrow"><span style="font-size:15px">⚖️</span><div><strong style="font-size:12px">Transparencia</strong><div style="font-size:11px;color:var(--muted);margin-top:1px">Honestidad y claridad en cada proceso</div></div></div><div class="vrow"><span style="font-size:15px">🤝</span><div><strong style="font-size:12px">Compromiso</strong><div style="font-size:11px;color:var(--muted);margin-top:1px">Responsabilidad ante cada ciudadano</div></div></div><div class="vrow"><span style="font-size:15px">🎯</span><div><strong style="font-size:12px">Eficiencia</strong><div style="font-size:11px;color:var(--muted);margin-top:1px">Optimizamos tiempos sin perder calidad</div></div></div><div class="vrow"><span style="font-size:15px">🌱</span><div><strong style="font-size:12px">Mejora continua</strong><div style="font-size:11px;color:var(--muted);margin-top:1px">Aprendemos y nos adaptamos constantemente</div></div></div></div>
+      <div class="msec" id="ms-calidad"><div class="btext" style="margin-bottom:10px">La OPS se compromete a brindar un servicio de excelencia orientado a la mejora continua.</div><div class="citem"><span>✔️</span><div>Cumplimiento de plazos procesales</div></div><div class="citem"><span>✔️</span><div>Atención respetuosa y accesible</div></div><div class="citem"><span>✔️</span><div>Gestión documental ordenada y trazable</div></div><div class="citem"><span>✔️</span><div>Capacitación permanente del personal</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-info" id="modal-cumples">
+  <div class="minfo-box">
+    <div class="minfo-head"><h3>Cumpleaños del personal</h3><button class="minfo-close" onclick="closeModal('cumples')">✕</button></div>
+    <div class="minfo-body">
+      <div class="bmonth">Marzo</div>
+      <div class="brow"><div class="bav">MR</div><div class="bname">María Rosa Suárez</div><div class="bdate">17 mar</div><span class="btoday" id="bdToday1"></span></div>
+      <div class="brow"><div class="bav">CL</div><div class="bname">Carlos López</div><div class="bdate">24 mar</div></div>
+      <div class="bmonth">Abril</div>
+      <div class="brow"><div class="bav">AG</div><div class="bname">Ana González</div><div class="bdate">03 abr</div></div>
+      <div class="brow"><div class="bav">PF</div><div class="bname">Pablo Fernández</div><div class="bdate">11 abr</div></div>
+      <div class="brow"><div class="bav">LM</div><div class="bname">Laura Martínez</div><div class="bdate">28 abr</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-info" id="modal-emergencias">
+  <div class="minfo-box">
+    <div class="minfo-head"><h3>Contactos de emergencia</h3><button class="minfo-close" onclick="closeModal('emergencias')">✕</button></div>
+    <div class="minfo-body">
+      <div class="erow"><div class="eico">🏥</div><div><div class="ename">SAME</div><div class="erole">Emergencias médicas</div><div class="ephone">107</div></div></div>
+      <div class="erow"><div class="eico">🚒</div><div><div class="ename">Bomberos</div><div class="erole">Incendio / evacuación</div><div class="ephone">100</div></div></div>
+      <div class="erow"><div class="eico">👮</div><div><div class="ename">Policía</div><div class="erole">Seguridad</div><div class="ephone">911</div></div></div>
+      <div class="erow"><div class="eico">👤</div><div><div class="ename">Dra. Andrea Rodríguez</div><div class="erole">Jefa de la Oficina</div><div class="ephone">+54 11 4000-1234</div></div></div>
+      <div class="erow"><div class="eico">🏢</div><div><div class="ename">Seguridad del edificio</div><div class="erole">Guardia interna</div><div class="ephone">Interno 101</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-info" id="modal-directorio">
+  <div class="minfo-box">
+    <div class="minfo-head"><h3>Directorio de personal</h3><button class="minfo-close" onclick="closeModal('directorio')">✕</button></div>
+    <div class="minfo-body">
+      <div class="erow"><div class="eico">👤</div><div><div class="ename">Dra. Andrea Rodríguez</div><div class="erole">Jefa de la Oficina</div><div class="ephone">andrea.rodriguez@ops.gob.ar · Int. 200</div></div></div>
+      <div class="erow"><div class="eico">👤</div><div><div class="ename">Lic. Marcelo González</div><div class="erole">Administración</div><div class="ephone">marcelo.gonzalez@ops.gob.ar · Int. 201</div></div></div>
+      <div class="erow"><div class="eico">👤</div><div><div class="ename">María Rosa Suárez</div><div class="erole">Secretaría</div><div class="ephone">mrosa.suarez@ops.gob.ar · Int. 202</div></div></div>
+      <div class="erow"><div class="eico">👤</div><div><div class="ename">Carlos López</div><div class="erole">Mesa de entradas</div><div class="ephone">carlos.lopez@ops.gob.ar · Int. 203</div></div></div>
+      <div class="erow"><div class="eico">👤</div><div><div class="ename">Ana González</div><div class="erole">Área jurídica</div><div class="ephone">ana.gonzalez@ops.gob.ar · Int. 210</div></div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ====== CONTRASEÑA CALIDAD — CAMBIAR AQUÍ ======
+const CLAVE_CALIDAD = 'calidad2026';
+const URL_CALIDAD = 'https://drive.google.com/drive/folders/PEGAR_LINK_CARPETA_CALIDAD';
+// ================================================
+
+// Cumpleaños — agregar nombre, día y mes
+const CUMPLEANOS = [
+  {nombre:'María Rosa Suárez', cargo:'Secretaría', dia:17, mes:3},
+  {nombre:'Carlos López', cargo:'Mesa de entradas', dia:24, mes:3},
+  {nombre:'Ana González', cargo:'Área jurídica', dia:3, mes:4},
+  {nombre:'Pablo Fernández', cargo:'Administración', dia:11, mes:4},
+  {nombre:'Laura Martínez', cargo:'Área jurídica', dia:28, mes:4},
+];
+
+// Fecha actual
+const hoy = new Date();
+const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+const dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+document.getElementById('hdate').textContent = dias[hoy.getDay()]+' '+hoy.getDate()+' de '+meses[hoy.getMonth()]+' de '+hoy.getFullYear();
+
+// Aviso cumpleaños
+const cumpleHoy = CUMPLEANOS.find(c => c.dia === hoy.getDate() && c.mes === (hoy.getMonth()+1));
+if(cumpleHoy){
+  document.getElementById('cumpleAviso').style.display='flex';
+  document.getElementById('cumpleNombre').textContent = cumpleHoy.nombre;
+  document.getElementById('cumpleNews').style.display='block';
+  document.getElementById('cumpleTitulo').textContent = '¡Hoy cumple años '+cumpleHoy.nombre+'!';
+  document.getElementById('cumpleArea').textContent = cumpleHoy.cargo+' · ¡Felicitala/o!';
+  document.getElementById('cumpleFecha').textContent = 'Hoy · '+hoy.getDate()+' '+meses[hoy.getMonth()]+' '+hoy.getFullYear();
+  document.getElementById('bdToday1') && (document.getElementById('bdToday1').textContent='¡Hoy!');
+}
+
+function goSection(name){
+  document.getElementById('homeView').style.display='none';
+  document.getElementById('contentView').classList.add('vis');
+  document.getElementById('hback').classList.add('vis');
+  document.getElementById('hdate').style.display='none';
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('active'));
+  document.getElementById('p-'+name).classList.add('active');
+  window.scrollTo(0,0);
+}
+function goHome(){
+  document.getElementById('homeView').style.display='block';
+  document.getElementById('contentView').classList.remove('vis');
+  document.getElementById('hback').classList.remove('vis');
+  document.getElementById('hdate').style.display='';
+  window.scrollTo(0,0);
+}
+function switchTab(name,el,prefix){
+  const panes=document.querySelectorAll('[id^="'+prefix+'-"]');
+  panes.forEach(p=>p.classList.remove('active'));
+  const btns=el.closest('.tabs').querySelectorAll('.tab-btn');
+  btns.forEach(b=>b.classList.remove('active'));
+  document.getElementById(prefix+'-'+name).classList.add('active');
+  el.classList.add('active');
+}
+function openModal(name){document.getElementById('modal-'+name).classList.add('open');}
+function closeModal(name){document.getElementById('modal-'+name).classList.remove('open');}
+function mtab(name,el){
+  document.querySelectorAll('.msec').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.mtab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('ms-'+name).classList.add('active');
+  el.classList.add('active');
+}
+function pedirPassword(){
+  document.getElementById('modalPwd').classList.add('open');
+  document.getElementById('pwdInput').value='';
+  document.getElementById('pwdError').style.display='none';
+  setTimeout(()=>document.getElementById('pwdInput').focus(),100);
+}
+function closeModalPwd(){document.getElementById('modalPwd').classList.remove('open');}
+function checkPwd(){
+  const val=document.getElementById('pwdInput').value;
+  if(val===CLAVE_CALIDAD){
+    closeModalPwd();
+    window.open(URL_CALIDAD,'_blank');
+  } else {
+    document.getElementById('pwdError').style.display='block';
+    document.getElementById('pwdInput').value='';
+    document.getElementById('pwdInput').focus();
+  }
+}
+function filtrarActas(){
+  const q=document.getElementById('actaSearch').value.toLowerCase();
+  const tipo=document.getElementById('fTipo').value;
+  const per=document.getElementById('fPer').value;
+  const rows=document.querySelectorAll('#listaActas .frow');
+  let v=0;
+  rows.forEach(r=>{
+    const ok=(!q||r.textContent.toLowerCase().includes(q))&&(!tipo||r.dataset.tipo===tipo)&&(!per||r.dataset.per===per);
+    r.style.display=ok?'':'none';
+    if(ok)v++;
+  });
+  document.getElementById('actasCount').textContent=v===rows.length?rows.length+' actas · mostrando todas':v+' de '+rows.length+' actas filtradas';
+}
+document.getElementById('pwdInput') && document.getElementById('pwdInput').addEventListener('keydown',function(e){if(e.key==='Escape')closeModalPwd();});
+
+// ====== SUBROGANCIAS DESDE PLANILLA ======
+const CSV_SUBROGANCIAS = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRJGt-HoccS3xnd4Pi8CjqI_9g4gno5pPeJEHQ7sRAu-kgQy5Xa1JVzQTX2xU4G2OB31c1uLakYE_ax/pub?gid=0&single=true&output=csv';
+let SUBS=[];
+
+function parseCSV(txt){
+  const filas=[];let campo='',fila=[],dentro=false;
+  for(let i=0;i<txt.length;i++){
+    const c=txt[i];
+    if(dentro){
+      if(c==='"'){ if(txt[i+1]==='"'){campo+='"';i++;} else dentro=false; }
+      else campo+=c;
+    }else{
+      if(c==='"')dentro=true;
+      else if(c===','){fila.push(campo);campo='';}
+      else if(c==='\n'||c==='\r'){
+        if(c==='\r'&&txt[i+1]==='\n')i++;
+        fila.push(campo);campo='';
+        if(fila.some(x=>x.trim()!==''))filas.push(fila);
+        fila=[];
+      }else campo+=c;
+    }
+  }
+  fila.push(campo);
+  if(fila.some(x=>x.trim()!==''))filas.push(fila);
+  return filas;
+}
+
+function aFecha(s){
+  if(!s)return null;
+  const p=s.trim().split(/[\/\-]/);
+  if(p.length!==3)return null;
+  const d=parseInt(p[0],10),m=parseInt(p[1],10),a=parseInt(p[2],10);
+  if(isNaN(d)||isNaN(m)||isNaN(a))return null;
+  const f=new Date(a,m-1,d);
+  return isNaN(f.getTime())?null:f;
+}
+
+const MESES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+function fmtFecha(f){
+  if(!f)return 'Sin definir';
+  return String(f.getDate()).padStart(2,'0')+' '+MESES[f.getMonth()]+' '+f.getFullYear();
+}
+
+function estadoDe(ini,fin){
+  const hoy=new Date();hoy.setHours(0,0,0,0);
+  if(ini&&ini>hoy)return 'proxima';
+  if(fin&&fin<hoy)return 'vencida';
+  return 'activa';
+}
+
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+function pintarSub(filtro){
+  const g=document.getElementById('subGrid');
+  if(!g)return;
+  const lista=filtro==='todas'?SUBS:SUBS.filter(s=>s.estado===filtro);
+  if(!lista.length){
+    g.innerHTML='<div class="sub-vacio">No hay subrogancias para mostrar en esta categoría.</div>';
+    return;
+  }
+  const etiq={activa:'Activa',proxima:'Próxima',vencida:'Vencida'};
+  g.innerHTML=lista.map(s=>
+    '<div class="sub-card"><div class="sub-juzgado">'+esc(s.juzgado)+'</div>'+
+    '<div class="sub-juez">'+esc(s.subrogante)+'</div>'+
+    '<div class="sub-row"><span class="sub-label">Desde</span><span class="sub-value">'+fmtFecha(s.ini)+'</span></div>'+
+    '<div class="sub-row"><span class="sub-label">Hasta</span><span class="sub-value">'+fmtFecha(s.fin)+'</span></div>'+
+    (s.obs?'<div class="sub-row"><span class="sub-label">Obs.</span><span class="sub-value">'+esc(s.obs)+'</span></div>':'')+
+    '<div class="sub-row"><span class="sub-label">Estado</span><span class="sub-'+s.estado+'">'+etiq[s.estado]+'</span></div></div>'
+  ).join('');
+}
+
+function filtrarSub(f,btn){
+  document.querySelectorAll('.sfil').forEach(b=>b.classList.remove('activo'));
+  if(btn)btn.classList.add('activo');
+  pintarSub(f);
+}
+
+function cargarSubrogancias(){
+  const g=document.getElementById('subGrid');
+  if(!g)return;
+  fetch(CSV_SUBROGANCIAS)
+    .then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.text();})
+    .then(txt=>{
+      const filas=parseCSV(txt);
+      if(filas.length<2){g.innerHTML='<div class="sub-vacio">La planilla no tiene subrogancias cargadas.</div>';return;}
+      SUBS=filas.slice(1).map(f=>{
+        const ini=aFecha(f[2]),fin=aFecha(f[3]);
+        return{juzgado:(f[0]||'').trim(),subrogante:(f[1]||'').trim(),ini:ini,fin:fin,obs:(f[4]||'').trim(),estado:estadoDe(ini,fin)};
+      }).filter(s=>s.juzgado||s.subrogante);
+      const orden={activa:0,proxima:1,vencida:2};
+      SUBS.sort((a,b)=>{
+        if(orden[a.estado]!==orden[b.estado])return orden[a.estado]-orden[b.estado];
+        return (b.ini?b.ini.getTime():0)-(a.ini?a.ini.getTime():0);
+      });
+      pintarSub('todas');
+    })
+    .catch(()=>{
+      g.innerHTML='<div class="sub-vacio">No se pudieron cargar las subrogancias. Verificá la conexión o consultá la carpeta de Drive.</div>';
+    });
+}
+cargarSubrogancias();
+</script>
+</body>
+</html>
