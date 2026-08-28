@@ -4,49 +4,50 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Portal OPS — Oficina Judicial de Procesos Sucesorios</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --blue:#185FA5;--blue-lt:#E6F1FB;--blue-mid:#378ADD;--blue-dk:#0C447C;
+  --blue:#0077C8;--blue-lt:#E6F1FB;--blue-mid:#378ADD;--blue-dk:#0C2340;
   --gold:#BA7517;--gold-lt:#FAEEDA;--gold-mid:#EF9F27;
   --teal:#0F6E56;--teal-lt:#E1F5EE;
   --purple:#534AB7;--purple-lt:#EEEDFE;
   --coral:#993C1D;--coral-lt:#FAECE7;
   --green:#27500A;--green-lt:#EAF3DE;
-  --navy:#042C53;--cream:#F4F7FB;
+  --navy:#0C2340;--ink:#333333;--cream:#FDF8F0;--cream-2:#FDF8F0;
   --muted:#5a6a7e;--border:rgba(24,95,165,0.14);--r:10px;
 }
-body{font-family:'Source Sans 3',sans-serif;background:var(--cream);color:var(--navy);min-height:100vh;}
+body{font-family:'Open Sans','Roboto',sans-serif;background:var(--cream);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased;}
 
 /* HEADER */
-.header{background:var(--blue-dk);color:white;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;border-bottom:3px solid var(--gold-mid);position:sticky;top:0;z-index:100;}
+.header{background:var(--blue-dk);color:white;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:68px;border-bottom:3px solid var(--gold-mid);position:sticky;top:0;z-index:100;}
 .hbrand{display:flex;align-items:center;gap:11px;}
-.hemblem{width:36px;height:36px;border-radius:50%;border:2px solid var(--gold-mid);color:var(--gold-mid);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:13px;font-weight:600;flex-shrink:0;}
-.htitles h1{font-family:'Playfair Display',serif;font-size:14px;font-weight:500;color:white;}
-.htitles p{font-size:9.5px;color:rgba(255,255,255,0.5);letter-spacing:0.07em;text-transform:uppercase;margin-top:1px;}
-.hdate{font-size:11px;color:rgba(255,255,255,0.38);}
-.hback{display:none;align-items:center;gap:7px;cursor:pointer;color:rgba(255,255,255,0.7);font-size:12.5px;background:none;border:none;transition:color 0.15s;}
+.hemblem{width:44px;height:44px;border-radius:50%;border:2px solid var(--gold-mid);color:var(--gold-mid);display:flex;align-items:center;justify-content:center;font-family:'Roboto','Open Sans',sans-serif;font-size:16px;font-weight:600;flex-shrink:0;}
+.htitles h1{font-family:'Roboto','Open Sans',sans-serif;font-size:19px;font-weight:500;color:white;}
+.htitles p{font-size:11.5px;color:rgba(255,255,255,0.78);letter-spacing:0.07em;text-transform:uppercase;margin-top:1px;}
+.hdate{font-size:14px;color:rgba(255,255,255,0.8);}
+.hback{display:none;align-items:center;gap:7px;cursor:pointer;color:rgba(255,255,255,0.7);font-size:15px;background:none;border:none;transition:color 0.15s;}
 .hback:hover{color:white;}
 .hback.vis{display:flex;}
 
 /* HOME */
 .home{padding:1.5rem;max-width:1200px;margin:0 auto;}
-.cumple-aviso{background:var(--gold-lt);border:1px solid var(--gold-mid);border-radius:var(--r);padding:.7rem 1rem;display:flex;align-items:center;gap:10px;margin-bottom:1.2rem;font-size:12.5px;color:var(--navy);}
+.cumple-aviso{background:var(--gold-lt);border:1px solid var(--gold-mid);border-radius:var(--r);padding:.9rem 1.2rem;display:flex;align-items:center;gap:12px;margin-bottom:1.4rem;font-size:15.5px;color:var(--navy);}
 .cumple-text strong{color:var(--gold);}
-.home-title{font-family:'Playfair Display',serif;font-size:17px;color:var(--navy);margin-bottom:4px;}
-.home-sub{font-size:12px;color:var(--muted);margin-bottom:1.2rem;}
-.sec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;}
-.sec-card{background:white;border:1px solid var(--border);border-radius:11px;padding:1.1rem 1rem;cursor:pointer;transition:all 0.18s;border-top:4px solid var(--sc,var(--blue));display:flex;flex-direction:column;gap:6px;min-height:100px;}
-.sec-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(4,44,83,0.12);}
-.sc-top{display:flex;align-items:center;gap:8px;}
-.sc-ico{font-size:20px;flex-shrink:0;}
-.sc-name{font-size:12.5px;font-weight:600;color:var(--navy);}
-.sc-badge{background:#e53e3e;color:white;font-size:9px;font-weight:700;padding:1px 5px;border-radius:9px;margin-left:3px;}
-.sc-items{display:flex;flex-direction:column;gap:2px;}
-.sc-item{font-size:10.5px;color:var(--muted);display:flex;align-items:center;gap:4px;}
-.sc-dot{width:4px;height:4px;border-radius:50%;background:var(--sc,var(--blue));flex-shrink:0;}
-.sc-card-calidad{border-top-color:#7b1fa2 !important;background:linear-gradient(to bottom right,white,#f3e5ff08);}
+.home-title{font-family:'Roboto','Open Sans',sans-serif;font-size:31px;font-weight:700;color:var(--navy);margin-bottom:6px;letter-spacing:-.3px;}
+.home-sub{font-size:1.05rem;color:#444;margin-bottom:1.6rem;}
+.sec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.sec-card{position:relative;background:#fff;border:1px solid rgba(4,44,83,.07);border-top:4px solid var(--sc,var(--blue));border-radius:12px;padding:1.35rem 1.3rem;cursor:pointer;transition:transform .18s,box-shadow .18s;display:flex;flex-direction:column;gap:7px;min-height:142px;box-shadow:0 4px 12px rgba(0,0,0,0.05);}
+.sec-card:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(0,0,0,0.09);}
+.sc-top{display:flex;align-items:center;gap:13px;margin-bottom:6px;position:relative;z-index:2;}
+.sc-ico{flex-shrink:0;width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:var(--scp,#eef4fa);}
+.sc-ico svg{width:26px;height:26px;stroke:var(--sc,var(--blue));fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;}
+.sc-name{font-size:1.25rem;font-weight:700;color:var(--sc,var(--navy));line-height:1.25;letter-spacing:-.2px;}
+.sc-badge{background:#DA291C;color:white;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:5px;vertical-align:middle;}
+.sc-items{display:flex;flex-direction:column;gap:5px;position:relative;z-index:2;}
+.sc-item{font-size:0.95rem;color:#333333;display:flex;align-items:flex-start;gap:8px;line-height:1.45;}
+.sc-dot{width:6px;height:6px;border-radius:50%;background:var(--sc,var(--blue));flex-shrink:0;margin-top:8px;}
+
 
 /* CONTENT */
 .content{display:none;flex-direction:column;}
@@ -54,9 +55,9 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--cream);color:var(--
 .main{flex:1;padding:1.5rem;max-width:1100px;width:100%;margin:0 auto;}
 .pane{display:none;}
 .pane.active{display:block;}
-.sec-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--navy);margin-bottom:3px;}
-.sec-sub{font-size:12px;color:var(--muted);margin-bottom:1.3rem;}
-.subsec{font-size:11px;font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:0.08em;margin:1.3rem 0 8px;padding-bottom:5px;border-bottom:1px solid var(--border);}
+.sec-title{font-family:'Roboto','Open Sans',sans-serif;font-size:28px;font-weight:700;color:var(--navy);margin-bottom:5px;}
+.sec-sub{font-size:16px;color:var(--muted);margin-bottom:1.6rem;}
+.subsec{font-size:14px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:0.07em;margin:1.6rem 0 11px;padding-bottom:7px;border-bottom:1px solid var(--border);}
 
 /* NEWS */
 .news-list{display:flex;flex-direction:column;gap:8px;}
@@ -77,9 +78,9 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--cream);color:var(--
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;}
 .card{background:white;border:1px solid var(--border);border-radius:var(--r);padding:1rem;cursor:pointer;transition:all 0.16s;border-top:3px solid var(--card-color,var(--gold-mid));position:relative;overflow:visible;}
 .card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(4,44,83,0.1);}
-.card-ico{font-size:20px;margin-bottom:6px;}
-.card-name{font-size:12.5px;font-weight:600;color:var(--navy);margin-bottom:2px;}
-.card-info{font-size:11px;color:var(--muted);}
+.card-ico{font-size:25px;margin-bottom:8px;}
+.card-name{font-size:1.05rem;font-weight:600;color:var(--navy);margin-bottom:3px;line-height:1.25;}
+.card-info{font-size:0.9rem;color:#555;}
 .card-drop{display:none;position:absolute;top:calc(100% + 2px);left:0;right:0;background:white;border:1px solid var(--border);border-radius:0 0 var(--r) var(--r);z-index:30;box-shadow:0 8px 16px rgba(4,44,83,0.1);}
 .card:hover .card-drop{display:block;}
 .cd-item{padding:7px 11px;font-size:11px;color:var(--navy);border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:6px;transition:background 0.1s;}
@@ -89,7 +90,7 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--cream);color:var(--
 
 /* TABS */
 .tabs{display:flex;background:white;border:1px solid var(--border);border-radius:var(--r) var(--r) 0 0;overflow:hidden;}
-.tab-btn{flex:1;padding:11px 6px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;text-align:center;border-bottom:3px solid transparent;transition:all 0.15s;border-right:0.5px solid var(--border);background:none;font-family:'Source Sans 3',sans-serif;}
+.tab-btn{flex:1;padding:11px 6px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;text-align:center;border-bottom:3px solid transparent;transition:all 0.15s;border-right:0.5px solid var(--border);background:none;font-family:'Open Sans','Roboto',sans-serif;}
 .tab-btn:last-child{border-right:none;}
 .tab-btn:hover{color:var(--navy);background:var(--blue-lt);}
 .tab-btn.active{color:var(--blue-dk);background:var(--blue-lt);border-bottom-color:var(--gold-mid);}
@@ -100,9 +101,9 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--cream);color:var(--
 .drive-box{background:white;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:10px;}
 .drive-bar{padding:9px 1rem;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
 .dbt{font-size:12.5px;font-weight:600;color:var(--navy);white-space:nowrap;}
-.dsearch{flex:1;min-width:90px;padding:6px 9px;border:1px solid var(--border);border-radius:7px;font-size:11.5px;background:var(--cream);outline:none;font-family:'Source Sans 3',sans-serif;}
+.dsearch{flex:1;min-width:90px;padding:6px 9px;border:1px solid var(--border);border-radius:7px;font-size:11.5px;background:var(--cream);outline:none;font-family:'Open Sans','Roboto',sans-serif;}
 .dsearch:focus{border-color:var(--blue);}
-.dfilter{padding:6px 9px;border:1px solid var(--border);border-radius:7px;font-size:11.5px;background:var(--cream);outline:none;color:var(--navy);font-family:'Source Sans 3',sans-serif;cursor:pointer;}
+.dfilter{padding:6px 9px;border:1px solid var(--border);border-radius:7px;font-size:11.5px;background:var(--cream);outline:none;color:var(--navy);font-family:'Open Sans','Roboto',sans-serif;cursor:pointer;}
 .frow{display:flex;align-items:center;gap:8px;padding:8px 1rem;border-bottom:0.5px solid var(--border);font-size:12px;cursor:pointer;transition:background 0.1s;}
 .frow:last-child{border-bottom:none;}
 .frow:hover{background:var(--blue-lt);}
@@ -120,7 +121,7 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--cream);color:var(--
 .actas-count{font-size:11px;color:var(--muted);padding:6px 1rem;border-top:1px solid var(--border);background:var(--cream);}
 
 /* OPEN LINK BTN */
-.open-link{display:inline-flex;align-items:center;gap:7px;background:var(--blue);color:white;padding:9px 16px;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;margin-bottom:12px;transition:background 0.15s;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;}
+.open-link{display:inline-flex;align-items:center;gap:7px;background:var(--blue);color:white;padding:9px 16px;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;margin-bottom:12px;transition:background 0.15s;border:none;cursor:pointer;font-family:'Open Sans','Roboto',sans-serif;}
 .open-link:hover{background:var(--blue-dk);}
 .open-link-outline{background:white;color:var(--blue);border:1px solid var(--blue);}
 .open-link-outline:hover{background:var(--blue-lt);}
@@ -136,13 +137,14 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--cream);color:var(--
 .link-desc{font-size:11px;color:var(--muted);}
 .link-arrow{font-size:14px;color:var(--blue);margin-left:auto;flex-shrink:0;}
 .link-tag{font-size:10px;background:var(--purple-lt);color:var(--purple);font-weight:600;padding:2px 6px;border-radius:6px;margin-top:3px;display:inline-block;}
+.link-grid+.subsec{margin-top:1.7rem;}
 .link-note{background:var(--blue-lt);border:1px solid rgba(24,95,165,0.2);border-radius:var(--r);padding:.75rem 1rem;font-size:12px;color:var(--blue-dk);margin-bottom:1.2rem;display:flex;gap:8px;align-items:flex-start;}
 
 /* STATS */
 .stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(135px,1fr));gap:10px;margin-bottom:1.2rem;}
 .scard{background:white;border:1px solid var(--border);border-radius:var(--r);padding:.9rem;}
 .slabel{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;}
-.sval{font-size:22px;font-weight:300;color:var(--navy);font-family:'Playfair Display',serif;}
+.sval{font-size:22px;font-weight:300;color:var(--navy);font-family:'Roboto','Open Sans',sans-serif;}
 .schg{font-size:10.5px;margin-top:2px;}
 .up{color:#0F6E56;}.dn{color:#a32d2d;}
 
@@ -193,14 +195,14 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--cream);color:var(--
 .modal-overlay.open{display:flex;}
 .modal-box{background:white;border-radius:14px;width:100%;max-width:400px;overflow:hidden;border-top:4px solid #7b1fa2;box-shadow:0 20px 60px rgba(4,44,83,0.3);}
 .modal-head{padding:1rem 1.3rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
-.modal-head h3{font-family:'Playfair Display',serif;font-size:16px;color:var(--navy);flex:1;}
+.modal-head h3{font-family:'Roboto','Open Sans',sans-serif;font-size:16px;color:var(--navy);flex:1;}
 .modal-body{padding:1.3rem;}
 .modal-body p{font-size:12.5px;color:var(--muted);margin-bottom:1rem;line-height:1.5;}
-.pwd-input{width:100%;padding:10px 13px;border:1px solid var(--border);border-radius:8px;font-size:14px;outline:none;font-family:'Source Sans 3',sans-serif;margin-bottom:8px;}
+.pwd-input{width:100%;padding:10px 13px;border:1px solid var(--border);border-radius:8px;font-size:14px;outline:none;font-family:'Open Sans','Roboto',sans-serif;margin-bottom:8px;}
 .pwd-input:focus{border-color:#7b1fa2;}
 .pwd-error{font-size:12px;color:#a32d2d;margin-bottom:10px;display:none;}
 .modal-btns{display:flex;gap:8px;}
-.btn-pwd{flex:1;padding:10px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Source Sans 3',sans-serif;transition:all 0.15s;}
+.btn-pwd{flex:1;padding:10px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Open Sans','Roboto',sans-serif;transition:all 0.15s;}
 .btn-enter{background:#7b1fa2;color:white;border:none;}
 .btn-enter:hover{background:#6a1b9a;}
 .btn-cancel{background:white;color:var(--muted);border:1px solid var(--border);}
@@ -211,11 +213,11 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--cream);color:var(--
 .modal-info.open{display:flex;}
 .minfo-box{background:white;border-radius:12px;width:100%;max-width:490px;overflow:hidden;border-top:3px solid var(--gold-mid);}
 .minfo-head{padding:.85rem 1.2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
-.minfo-head h3{font-family:'Playfair Display',serif;font-size:15px;color:var(--navy);}
+.minfo-head h3{font-family:'Roboto','Open Sans',sans-serif;font-size:15px;color:var(--navy);}
 .minfo-close{background:none;border:none;font-size:17px;color:var(--muted);cursor:pointer;}
 .minfo-body{padding:.9rem 1.2rem;max-height:400px;overflow-y:auto;}
 .mtabs{display:flex;border-bottom:1px solid var(--border);margin:-.9rem -1.2rem .9rem;}
-.mtab{padding:8px 14px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.15s;background:none;font-family:'Source Sans 3',sans-serif;}
+.mtab{padding:8px 14px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.15s;background:none;font-family:'Open Sans','Roboto',sans-serif;}
 .mtab:hover{color:var(--navy);}
 .mtab.active{color:var(--blue-dk);border-bottom-color:var(--gold-mid);}
 .msec{display:none;}
@@ -241,14 +243,39 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--cream);color:var(--
 .erole{font-size:11px;color:var(--muted);margin-top:1px;}
 .ephone{font-size:11.5px;color:var(--blue);font-weight:500;margin-top:2px;}
 
-.footer{background:var(--blue-dk);color:rgba(255,255,255,0.35);padding:10px 1.5rem;font-size:10.5px;border-top:2px solid var(--gold-mid);display:flex;justify-content:space-between;}
-.footer span{color:var(--gold-mid);font-weight:600;}
+.footer{background:var(--blue-dk);color:rgba(255,255,255,0.72);padding:14px 1.5rem;font-size:13px;border-top:2px solid var(--gold-mid);display:flex;justify-content:space-between;}
+.footer span{color:#FFD700;font-weight:700;}
 
 /* ====== DRIVE LINKS — REEMPLAZAR CON LINKS REALES ====== */
 .sfil{background:#fff;border:1px solid #cbd5e1;color:#475569;font-family:inherit;font-size:14px;font-weight:600;padding:.45rem 1rem;border-radius:20px;cursor:pointer;transition:.15s;}
 .sfil:hover{border-color:var(--teal);color:var(--teal);}
 .sfil.activo{background:var(--teal);border-color:var(--teal);color:#fff;}
 .sub-vacio{padding:1.2rem;color:#64748b;font-size:15px;}
+.home{max-width:1280px;}
+@media(max-width:1100px){.sec-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:820px){.sec-grid{grid-template-columns:repeat(2,1fr);}.home-title{font-size:25px;}}
+@media(max-width:560px){.sec-grid{grid-template-columns:1fr;}.sc-name{font-size:16.5px;}.hdate{display:none;}}
+
+
+.home-hero{padding:.2rem 0 0;margin-bottom:1.9rem;}
+.home-hero .home-title,.home-hero .home-sub{position:relative;z-index:2;margin-bottom:0;}
+.home-hero .home-sub{margin-top:7px;}
+
+@media(max-width:900px){}
+
+
+.home{position:relative;}
+
+.home-hero,.sec-grid{position:relative;z-index:2;}
+
+
+
+
+
+@media(max-width:1400px){.deco-plane-l,.deco-plane-r,.deco-team,}
+@media(max-width:820px){}
+.prox-linea{display:flex;align-items:center;gap:9px;padding:5px 0;font-size:0.95rem;}
+.prox-dia{background:var(--gold-lt);color:var(--gold);font-weight:700;font-size:.82rem;padding:2px 9px;border-radius:9px;white-space:nowrap;}
 </style>
 </head>
 <body>
@@ -267,90 +294,93 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--cream);color:var(--
 
 <!-- HOME -->
 <div class="home" id="homeView">
+
   <div class="cumple-aviso" id="cumpleAviso" style="display:none">
     <span style="font-size:18px">🎂</span>
     <div class="cumple-text">Hoy cumple años <strong id="cumpleNombre"></strong> · ¡Felicitala/o!</div>
   </div>
-  <div class="home-title">Portal institucional</div>
-  <div class="home-sub">Seleccioná una sección para acceder a sus contenidos</div>
+  <div class="home-hero">
+    <div class="home-title">Portal institucional</div>
+    <div class="home-sub">Seleccioná una sección para acceder a sus contenidos</div>
+  </div>
   <div class="sec-grid">
 
-    <div class="sec-card" style="--sc:#e53e3e" onclick="goSection('novedades')">
-      <div class="sc-top"><div class="sc-ico">🔔</div><div class="sc-name">Novedades y avisos <span class="sc-badge">3</span></div></div>
+    <div class="sec-card" style="--sc:#DA291C;--scp:#FCE9E7" onclick="goSection('novedades')">
+      <div class="sc-top"><div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div><div class="sc-name">Novedades y avisos <span class="sc-badge">3</span></div></div>
       <div class="sc-items">
-        <div class="sc-item"><div class="sc-dot" style="background:#e53e3e"></div>Circulares · Comunicados</div>
-        <div class="sc-item"><div class="sc-dot" style="background:#e53e3e"></div>Avisos · Cumpleaños del día</div>
+        <div class="sc-item"><div class="sc-dot"></div>Circulares · Comunicados</div>
+        <div class="sc-item"><div class="sc-dot"></div>Avisos · Cumpleaños del día</div>
       </div>
     </div>
 
-    <div class="sec-card" style="--sc:#185FA5" onclick="goSection('institucional')">
-      <div class="sc-top"><div class="sc-ico">🏛️</div><div class="sc-name">Institucional</div></div>
+    <div class="sec-card" style="--sc:#0077C8;--scp:#E4F1FB" onclick="goSection('institucional')">
+      <div class="sc-top"><div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M3 21h18M4 10h16M5 10V21M9.5 10V21M14.5 10V21M19 10V21M12 3l9 5H3l9-5z"/></svg></div><div class="sc-name">Institucional</div></div>
       <div class="sc-items">
         <div class="sc-item"><div class="sc-dot"></div>Organigrama · Circuitos · Actas</div>
         <div class="sc-item"><div class="sc-dot"></div>Directorio · Cumpleaños · Emergencias</div>
       </div>
     </div>
 
-    <div class="sec-card" style="--sc:#0C447C" onclick="goSection('consultas')">
-      <div class="sc-top"><div class="sc-ico">🔍</div><div class="sc-name">Consultas</div></div>
+    <div class="sec-card" style="--sc:#00A18C;--scp:#E0F6F3" onclick="goSection('consultas')">
+      <div class="sc-top"><div class="sc-ico"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div><div class="sc-name">Consultas</div></div>
       <div class="sc-items">
-        <div class="sc-item"><div class="sc-dot" style="background:#0C447C"></div>Posición de los jueces OPS</div>
-        <div class="sc-item"><div class="sc-dot" style="background:#0C447C"></div>Fallos de cámara · Casos inéditos</div>
-        <div class="sc-item"><div class="sc-dot" style="background:#0C447C"></div>Links de uso frecuente</div>
+        <div class="sc-item"><div class="sc-dot"></div>Posición de los jueces OPS</div>
+        <div class="sc-item"><div class="sc-dot"></div>Fallos de cámara · Casos inéditos</div>
+        <div class="sc-item"><div class="sc-dot"></div>Links de uso frecuente</div>
       </div>
     </div>
 
-    <div class="sec-card" style="--sc:#534AB7" onclick="goSection('dictamenes')">
-      <div class="sc-top"><div class="sc-ico">📝</div><div class="sc-name">Dictámenes</div></div>
+    <div class="sec-card" style="--sc:#7B5FC4;--scp:#F0EBFA" onclick="goSection('dictamenes')">
+      <div class="sc-top"><div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8l-5-5z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></div><div class="sc-name">Dictámenes</div></div>
       <div class="sc-items">
-        <div class="sc-item"><div class="sc-dot" style="background:#534AB7"></div>Agente Fiscal</div>
-        <div class="sc-item"><div class="sc-dot" style="background:#534AB7"></div>Auditoría Contable · Asesor Menores</div>
+        <div class="sc-item"><div class="sc-dot"></div>Agente Fiscal</div>
+        <div class="sc-item"><div class="sc-dot"></div>Auditoría Contable · Asesor Menores</div>
       </div>
     </div>
 
-    <div class="sec-card" style="--sc:#0F6E56" onclick="goSection('indicadores')">
-      <div class="sc-top"><div class="sc-ico">📊</div><div class="sc-name">Indicadores</div></div>
+    <div class="sec-card" style="--sc:#3E9142;--scp:#E8F5E9" onclick="goSection('indicadores')">
+      <div class="sc-top"><div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><rect x="5" y="12" width="3.5" height="7" rx="1"/><rect x="10.2" y="8" width="3.5" height="11" rx="1"/><rect x="15.5" y="4" width="3.5" height="15" rx="1"/></svg></div><div class="sc-name">Indicadores</div></div>
       <div class="sc-items">
-        <div class="sc-item"><div class="sc-dot" style="background:#0F6E56"></div>Promedios mensuales</div>
-        <div class="sc-item"><div class="sc-dot" style="background:#0F6E56"></div>Power BI · Tasas de riesgo operativa</div>
+        <div class="sc-item"><div class="sc-dot"></div>Promedios mensuales</div>
+        <div class="sc-item"><div class="sc-dot"></div>Power BI · Tasas de riesgo operativa</div>
       </div>
     </div>
 
-    <div class="sec-card" style="--sc:#BA7517" onclick="goSection('instructivos')">
-      <div class="sc-top"><div class="sc-ico">📌</div><div class="sc-name">Instructivos</div></div>
+    <div class="sec-card" style="--sc:#E07C00;--scp:#FFF1DE" onclick="goSection('instructivos')">
+      <div class="sc-top"><div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M12 14v7M9 3h6l-1 5 3 3v2H7v-2l3-3-1-5z"/></svg></div><div class="sc-name">Instructivos</div></div>
       <div class="sc-items">
-        <div class="sc-item"><div class="sc-dot" style="background:#BA7517"></div>Por circuito · Glosario SAE</div>
+        <div class="sc-item"><div class="sc-dot"></div>Por circuito · Glosario SAE</div>
       </div>
     </div>
 
-    <div class="sec-card" style="--sc:#534AB7" onclick="goSection('formacion')">
-      <div class="sc-top"><div class="sc-ico">🎓</div><div class="sc-name">Formación</div></div>
+    <div class="sec-card" style="--sc:#7C6BC4;--scp:#E6E6FA" onclick="goSection('formacion')">
+      <div class="sc-top"><div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M12 4l10 5-10 5-10-5 10-5z"/><path d="M5 11v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"/><path d="M22 9v6"/></svg></div><div class="sc-name">Formación</div></div>
       <div class="sc-items">
-        <div class="sc-item"><div class="sc-dot" style="background:#534AB7"></div>Inducción · Cursos · Videoteca</div>
-        <div class="sc-item"><div class="sc-dot" style="background:#534AB7"></div>Biblioteca digital · Buenas prácticas</div>
+        <div class="sc-item"><div class="sc-dot"></div>Inducción · Cursos · Videoteca</div>
+        <div class="sc-item"><div class="sc-dot"></div>Biblioteca digital · Buenas prácticas</div>
       </div>
     </div>
 
-    <div class="sec-card" style="--sc:#993C1D" onclick="goSection('subrogancias')">
-      <div class="sc-top"><div class="sc-ico">🔁</div><div class="sc-name">Subrogancias</div></div>
+    <div class="sec-card" style="--sc:#2E86A8;--scp:#DFF1F8" onclick="goSection('subrogancias')">
+      <div class="sc-top"><div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 01-13.7 5.6"/><path d="M4 12a8 8 0 0113.7-5.6"/><path d="M20 5v4h-4M4 19v-4h4"/></svg></div><div class="sc-name">Subrogancias</div></div>
       <div class="sc-items">
-        <div class="sc-item"><div class="sc-dot" style="background:#993C1D"></div>Activas · Próximas · Historial</div>
+        <div class="sc-item"><div class="sc-dot"></div>Activas · Próximas · Historial</div>
       </div>
     </div>
 
-    <div class="sec-card" style="--sc:#27500A" onclick="goSection('links')">
-      <div class="sc-top"><div class="sc-ico">🔗</div><div class="sc-name">Links de registros</div></div>
+    <div class="sec-card" style="--sc:#4C9E52;--scp:#C8E6C9" onclick="goSection('links')">
+      <div class="sc-top"><div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M10 13.5a4 4 0 006 .5l2.5-2.5a4.2 4.2 0 00-6-6L11 7"/><path d="M14 10.5a4 4 0 00-6-.5L5.5 12.5a4.2 4.2 0 006 6L13 17"/></svg></div><div class="sc-name">Links de registros</div></div>
       <div class="sc-items">
-        <div class="sc-item"><div class="sc-dot" style="background:#27500A"></div>Forms varios · Casos inéditos</div>
-        <div class="sc-item"><div class="sc-dot" style="background:#27500A"></div>Hallazgos · Modelos de escritos</div>
+        <div class="sc-item"><div class="sc-dot"></div>Fallos de Cámara · Atención de Mesa</div>
+        <div class="sc-item"><div class="sc-dot"></div>Mediación · Buzón · Reclamos</div>
       </div>
     </div>
 
-    <div class="sec-card sc-card-calidad" style="--sc:#7b1fa2" onclick="pedirPassword()">
-      <div class="sc-top"><div class="sc-ico">🔐</div><div class="sc-name">Equipo de Calidad</div></div>
+    <div class="sec-card sc-card-calidad" style="--sc:#C79A00;--scp:#FFF6D6" onclick="pedirPassword()">
+      <div class="sc-top"><div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M11 17l-3.5 2.5a1.6 1.6 0 01-2.3-2.2L9 12"/><path d="M13 17l3.5 2.5a1.6 1.6 0 002.3-2.2L15 12"/><path d="M4 8l3-3 5 2 5-2 3 3-3.5 4.5-4.5-1.5-4.5 1.5L4 8z"/></svg></div><div class="sc-name">Equipo de Calidad</div></div>
       <div class="sc-items">
-        <div class="sc-item"><div class="sc-dot" style="background:#7b1fa2"></div>Acceso exclusivo · 3 personas</div>
-        <div class="sc-item"><div class="sc-dot" style="background:#7b1fa2"></div>Normas de calidad</div>
+        <div class="sc-item"><div class="sc-dot"></div>Acceso exclusivo · 3 personas</div>
+        <div class="sc-item"><div class="sc-dot"></div>Normas de calidad</div>
       </div>
     </div>
 
@@ -365,16 +395,17 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--cream);color:var(--
   <div class="pane" id="p-novedades">
     <div class="sec-title">Novedades y avisos</div>
     <div class="sec-sub">Circulares, comunicados, avisos institucionales y cumpleaños del día</div>
-    <a class="open-link" href="https://drive.google.com/drive/folders/1PRf-6dP42SJGNW5CjX7qRmMy0IZ88I9C" target="_blank">📁 Abrir carpeta en Drive</a>
-    <div class="news-list">
+    <div class="news-list" id="newsList">
       <div class="nitem cumple-item" id="cumpleNews" style="display:none">
         <div class="nhead"><span class="ntag cumple">🎂 Cumpleaños</span><span class="ndate" id="cumpleFecha"></span></div>
         <div class="ntitle" id="cumpleTitulo"></div>
         <div class="nbody" id="cumpleArea"></div>
       </div>
-      <div class="nitem"><div class="nhead"><span class="ntag urgente">Urgente</span><span class="ndate">15 mar 2026</span></div><div class="ntitle">Modificación del plazo de inscripción — Res. 1247/2025</div><div class="nbody">Se amplía el plazo de inscripción de herederos a 60 días hábiles según la Resolución 1247/2025.</div></div>
-      <div class="nitem"><div class="nhead"><span class="ntag circular">Circular</span><span class="ndate">10 mar 2026</span></div><div class="ntitle">Circular N° 08/2026 — Criterios de prioridad en expedientes complejos</div><div class="nbody">Nuevos criterios de prioridad para expedientes sucesorios con múltiples herederos.</div></div>
-      <div class="nitem"><div class="nhead"><span class="ntag aviso">Aviso</span><span class="ndate">05 mar 2026</span></div><div class="ntitle">Jornada de actualización — Sucesiones internacionales · 28 de marzo</div><div class="nbody">Materiales disponibles en la sección Formación.</div></div>
+      <div class="nitem" id="novProximos" style="display:none">
+        <div class="nhead"><span class="ntag cumple">🎈 Próximos cumpleaños</span></div>
+        <div class="nbody" id="novProximosTxt"></div>
+      </div>
+      <div id="novCargando" class="sub-vacio">Cargando novedades…</div>
     </div>
   </div>
 
@@ -470,18 +501,37 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--cream);color:var(--
       <div class="info-bar"><span>ℹ️</span> La planilla se abre en Google Sheets con todos los fallos de cámara actualizados. Solo lectura para los operadores.</div>
     </div>
     <div class="tab-pane" id="cons-ineditos">
-      <div class="carga-aviso"><span>💡</span><div>¿Encontraste un caso sin precedente? Cargalo desde <span class="carga-link" onclick="goSection('links')">Links de registros → Casos inéditos</span> y aparecerá acá.</div></div>
-      <div class="caso-card"><div class="caso-head"><span class="caso-num">CI-003</span><span class="caso-fecha">12 mar 2026</span></div><div class="caso-title">Sucesión con heredero declarado ausente con presunción de fallecimiento</div><div class="caso-area">Juzgado N° 2 · Dra. Ramos</div><div class="caso-body">Se suspendió la declaratoria hasta resolución definitiva del juicio de ausencia.</div><span class="caso-tag">Sin precedente en la OPS</span></div>
-      <div class="caso-card"><div class="caso-head"><span class="caso-num">CI-002</span><span class="caso-fecha">28 feb 2026</span></div><div class="caso-title">Bien inmueble en zona de litigio internacional</div><div class="caso-area">Juzgado N° 4 · Dra. Pereyra</div><div class="caso-body">Se requirió dictamen especial del Ministerio de Relaciones Exteriores antes de continuar.</div><span class="caso-tag">Requirió intervención externa</span></div>
-      <div class="caso-card"><div class="caso-head"><span class="caso-num">CI-001</span><span class="caso-fecha">10 feb 2026</span></div><div class="caso-title">Heredero único es una persona jurídica extranjera sin representación local</div><div class="caso-area">Juzgado N° 1 · Dr. Villanueva</div><div class="caso-body">Se exigió constitución de domicilio procesal en Argentina antes de dar curso al expediente.</div><span class="caso-tag">Criterio adoptado por la OPS</span></div>
+      <a class="open-link" href="https://docs.google.com/spreadsheets/d/182_fNbx8CKB-Zbm9AowZwMyfPe3W7M4_oZSRJbHQ8pI/edit" target="_blank" rel="noopener">💡 Abrir registro de casos inéditos</a>
+      <div class="carga-aviso"><span>💡</span><div>¿Encontraste un caso sin precedente? Cargalo desde <span class="carga-link" onclick="goSection('links')">Links de registros → Cargar caso inédito</span> y quedará registrado en la planilla.</div></div>
     </div>
     <div class="tab-pane" id="cons-frecuente">
-      <div class="link-note"><span>🔗</span> Links de acceso frecuente para el trabajo diario. Reemplazá cada link con los sistemas reales que usan.</div>
+      <div class="link-note"><span>🔗</span> Accesos directos a organismos, registros y publicaciones de uso habitual. Se abren en una pestaña nueva.</div>
+      <div class="subsec">San Juan</div>
       <div class="link-grid">
-        <a class="link-card" href="#" target="_blank"><div class="link-ico">🖥️</div><div><div class="link-name">Sistema de gestión judicial</div><div class="link-desc">Acceso al sistema principal</div></div><div class="link-arrow">↗</div></a>
-        <a class="link-card" href="#" target="_blank"><div class="link-ico">📋</div><div><div class="link-name">Sistema SAE</div><div class="link-desc">Gestión de trámites</div></div><div class="link-arrow">↗</div></a>
-        <a class="link-card" href="#" target="_blank"><div class="link-ico">🔎</div><div><div class="link-name">Consulta de expedientes</div><div class="link-desc">Búsqueda por número</div></div><div class="link-arrow">↗</div></a>
-        <a class="link-card" href="#" target="_blank"><div class="link-ico">📰</div><div><div class="link-name">Boletín Oficial</div><div class="link-desc">Publicaciones oficiales</div></div><div class="link-arrow">↗</div></a>
+        <a class="link-card" href="https://sj.sanjuan.gob.ar/" target="_blank" rel="noopener"><div class="link-ico">🏛️</div><div><div class="link-name">Gobierno de San Juan</div><div class="link-desc">Portal provincial · Rentas</div></div><div class="link-arrow">↗</div></a>
+        <a class="link-card" href="https://catastro.sanjuan.gob.ar/" target="_blank" rel="noopener"><div class="link-ico">🗺️</div><div><div class="link-name">Catastro San Juan</div><div class="link-desc">Consulta de parcelas y valuaciones</div></div><div class="link-arrow">↗</div></a>
+        <a class="link-card" href="https://validacion.sanjuan.gob.ar/" target="_blank" rel="noopener"><div class="link-ico">🪪</div><div><div class="link-name">Ciudadano Digital</div><div class="link-desc">Validación de identidad</div></div><div class="link-arrow">↗</div></a>
+        <a class="link-card" href="https://boletinoficial.sanjuan.gob.ar/" target="_blank" rel="noopener"><div class="link-ico">📰</div><div><div class="link-name">Boletín Oficial</div><div class="link-desc">Publicación de edictos</div></div><div class="link-arrow">↗</div></a>
+        <a class="link-card" href="http://www.fasj.org.ar/wp" target="_blank" rel="noopener"><div class="link-ico">⚖️</div><div><div class="link-name">Foro de Abogados</div><div class="link-desc">Colegio de Abogados de San Juan</div></div><div class="link-arrow">↗</div></a>
+        <a class="link-card" href="http://www.colnotarialsanjuan.org.ar/" target="_blank" rel="noopener"><div class="link-ico">📜</div><div><div class="link-name">Colegio Notarial</div><div class="link-desc">Escribanos de San Juan</div></div><div class="link-arrow">↗</div></a>
+      </div>
+      <div class="subsec">Organismos nacionales</div>
+      <div class="link-grid">
+        <a class="link-card" href="https://www.dnrpa.gov.ar/portal_dnrpa/" target="_blank" rel="noopener"><div class="link-ico">🚗</div><div><div class="link-name">Registro Automotor</div><div class="link-desc">DNRPA · Dominios y titularidad</div></div><div class="link-arrow">↗</div></a>
+        <a class="link-card" href="http://www.anses.gob.ar/" target="_blank" rel="noopener"><div class="link-ico">👥</div><div><div class="link-name">ANSES</div><div class="link-desc">Previsión social</div></div><div class="link-arrow">↗</div></a>
+      </div>
+      <div class="subsec">Otras provincias</div>
+      <div class="link-grid">
+        <a class="link-card" href="https://buenosaires.gob.ar/" target="_blank" rel="noopener"><div class="link-ico">🏙️</div><div><div class="link-name">Ciudad de Buenos Aires</div><div class="link-desc">Gobierno de CABA</div></div><div class="link-arrow">↗</div></a>
+        <a class="link-card" href="https://www.gba.gob.ar/" target="_blank" rel="noopener"><div class="link-ico">🏛️</div><div><div class="link-name">Provincia de Buenos Aires</div><div class="link-desc">Gobierno provincial</div></div><div class="link-arrow">↗</div></a>
+        <a class="link-card" href="https://www.mendoza.gob.ar/" target="_blank" rel="noopener"><div class="link-ico">🍇</div><div><div class="link-name">Mendoza</div><div class="link-desc">Gobierno provincial</div></div><div class="link-arrow">↗</div></a>
+        <a class="link-card" href="https://www.cba.gov.ar/" target="_blank" rel="noopener"><div class="link-ico">🏛️</div><div><div class="link-name">Córdoba</div><div class="link-desc">Gobierno provincial</div></div><div class="link-arrow">↗</div></a>
+        <a class="link-card" href="https://sanluis.gov.ar/" target="_blank" rel="noopener"><div class="link-ico">🏛️</div><div><div class="link-name">San Luis</div><div class="link-desc">Gobierno provincial</div></div><div class="link-arrow">↗</div></a>
+      </div>
+      <div class="subsec">Prensa local</div>
+      <div class="link-grid">
+        <a class="link-card" href="https://www.diariodecuyo.com.ar/" target="_blank" rel="noopener"><div class="link-ico">📄</div><div><div class="link-name">Diario de Cuyo</div><div class="link-desc">Edictos y publicaciones</div></div><div class="link-arrow">↗</div></a>
+        <a class="link-card" href="https://www.diarioelzondasj.com.ar/" target="_blank" rel="noopener"><div class="link-ico">📄</div><div><div class="link-name">Diario El Zonda</div><div class="link-desc">Edictos y publicaciones</div></div><div class="link-arrow">↗</div></a>
       </div>
     </div>
   </div>
@@ -592,24 +642,25 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--cream);color:var(--
   <!-- LINKS DE REGISTROS -->
   <div class="pane" id="p-links">
     <div class="sec-title">Links de registros</div>
-    <div class="sec-sub">Accesos directos a formularios y registros del equipo</div>
-    <div class="link-note"><span>ℹ️</span> Hacé clic en el formulario, completalo y envialo. Los datos quedan registrados para consulta del equipo.</div>
-    <div class="subsec">Forms varios</div>
+    <div class="sec-sub">Formularios de carga de datos de la Oficina</div>
+    <div class="link-note"><span>ℹ️</span> <div>En esta sección se <strong>cargan datos</strong>; no se consultan. Cada botón abre un formulario: completalo y envialo, y la información queda registrada para el equipo.<br/>Para <strong>consultar</strong> información ya cargada, usá el botón <strong>Consultas</strong> del inicio.</div></div>
+
+    <div class="subsec">Registros de gestión</div>
     <div class="link-grid" style="margin-bottom:1.2rem">
-      <a class="link-card" href="https://docs.google.com/forms/d/e/1FAIpQLSfiRjPcr2jXa-7JEwMp6aplKLrHUZK5smyDd30g78OwE_DIAw/viewform?usp=sharing&ouid=115543256797684784371 " target="_blank"><div class="link-ico">📋</div><div><div class="link-name">Formulario 1</div><div class="link-desc">Reemplazar con link real</div></div><div class="link-arrow">↗</div></a>
-      <a class="link-card" href="https://docs.google.com/forms/d/e/1FAIpQLSfhEs79xg1-Qvqz8hpR91BYq23s5bBBP8Nu-bSJNLEGiOEIEg/viewform?usp=sharing&ouid=115543256797684784371 " target="_blank"><div class="link-ico">📋</div><div><div class="link-name">Formulario 2</div><div class="link-desc">Reemplazar con link real</div></div><div class="link-arrow">↗</div></a>
+      <a class="link-card" href="https://docs.google.com/forms/d/e/1FAIpQLSfiRjPcr2jXa-7JEwMp6aplKLrHUZK5smyDd30g78OwE_DIAw/viewform?usp=sharing" target="_blank" rel="noopener"><div class="link-ico">⚖️</div><div><div class="link-name">Carga de fallos de Cámara</div><div class="link-desc">Cuando vuelve un expediente de Cámara, cargá acá la resolución.</div><div class="link-tag">→ se consulta en Consultas → Fallos de cámara</div></div><div class="link-arrow">↗</div></a>
+      <a class="link-card" href="https://docs.google.com/forms/d/e/1FAIpQLSfhEs79xg1-Qvqz8hpR91BYq23s5bBBP8Nu-bSJNLEGiOEIEg/viewform?usp=sharing" target="_blank" rel="noopener"><div class="link-ico">🗂️</div><div><div class="link-name">Registro de atención de Mesa</div><div class="link-desc">Registro diario de atención al público en Mesa de Entradas.</div></div><div class="link-arrow">↗</div></a>
+      <a class="link-card" href="https://forms.gle/xWua95kkYPYEG7vH6" target="_blank" rel="noopener"><div class="link-ico">🤝</div><div><div class="link-name">Causas enviadas a mediación</div><div class="link-desc">Registro de expedientes derivados a mediación.</div></div><div class="link-arrow">↗</div></a>
     </div>
+
+    <div class="subsec">Comunicación interna</div>
+    <div class="link-grid" style="margin-bottom:1.2rem">
+      <a class="link-card" href="https://docs.google.com/forms/d/e/1FAIpQLScn4Z_54UUsbRMgfWIS1wZvMAQEuyUZPQj2eqTtqpblZ4BxIQ/viewform?usp=sharing" target="_blank" rel="noopener"><div class="link-ico">📣</div><div><div class="link-name">Buzón de voz del despachante/referente</div><div class="link-desc">Canal directo para despachantes y referentes.</div></div><div class="link-arrow">↗</div></a>
+      <a class="link-card" href="https://docs.google.com/forms/d/e/1FAIpQLSc5tXkcPH_ExD-ttDgygtikWcziIQ4J-_ewjOWQf6h7F09geg/viewform?usp=sharing" target="_blank" rel="noopener"><div class="link-ico">💬</div><div><div class="link-name">Hallazgos y sugerencias</div><div class="link-desc">Reclamos, sugerencias y hallazgos de mejora de la OPS.</div></div><div class="link-arrow">↗</div></a>
+    </div>
+
     <div class="subsec">Casos inéditos</div>
-    <div class="link-grid" style="margin-bottom:1.2rem">
-      <a class="link-card destacado" href="#" target="_blank"><div class="link-ico">💡</div><div><div class="link-name">Cargar caso inédito</div><div class="link-desc">Se consulta en Consultas → Casos inéditos</div><div class="link-tag">→ aparece en Consultas</div></div><div class="link-arrow">↗</div></a>
-    </div>
-    <div class="subsec">Hallazgos y sugerencias</div>
-    <div class="link-grid" style="margin-bottom:1.2rem">
-      <a class="link-card" href="#" target="_blank"><div class="link-ico">💬</div><div><div class="link-name">Formulario de hallazgos</div><div class="link-desc">Reportar hallazgos y sugerencias de mejora</div></div><div class="link-arrow">↗</div></a>
-    </div>
-    <div class="subsec">Modelos de escritos</div>
     <div class="link-grid">
-      <a class="link-card" href="#" target="_blank"><div class="link-ico">📝</div><div><div class="link-name">Carpeta de modelos</div><div class="link-desc">Plantillas y modelos de escritos</div></div><div class="link-arrow">↗</div></a>
+      <a class="link-card destacado" href="https://forms.gle/GHYLbuq9ZbKZP8cg6" target="_blank" rel="noopener"><div class="link-ico">💡</div><div><div class="link-name">Cargar caso inédito</div><div class="link-desc">Registro de casos sin precedente en la OPS.</div><div class="link-tag">→ se consulta en Consultas → Casos inéditos</div></div><div class="link-arrow">↗</div></a>
     </div>
   </div>
 
@@ -659,13 +710,7 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--cream);color:var(--
   <div class="minfo-box">
     <div class="minfo-head"><h3>Cumpleaños del personal</h3><button class="minfo-close" onclick="closeModal('cumples')">✕</button></div>
     <div class="minfo-body">
-      <div class="bmonth">Marzo</div>
-      <div class="brow"><div class="bav">MR</div><div class="bname">María Rosa Suárez</div><div class="bdate">17 mar</div><span class="btoday" id="bdToday1"></span></div>
-      <div class="brow"><div class="bav">CL</div><div class="bname">Carlos López</div><div class="bdate">24 mar</div></div>
-      <div class="bmonth">Abril</div>
-      <div class="brow"><div class="bav">AG</div><div class="bname">Ana González</div><div class="bdate">03 abr</div></div>
-      <div class="brow"><div class="bav">PF</div><div class="bname">Pablo Fernández</div><div class="bdate">11 abr</div></div>
-      <div class="brow"><div class="bav">LM</div><div class="bname">Laura Martínez</div><div class="bdate">28 abr</div></div>
+      <div id="cumpleLista"><div class="sub-vacio">Cargando…</div></div>
     </div>
   </div>
 </div>
@@ -702,14 +747,7 @@ const CLAVE_CALIDAD = 'calidad2026';
 const URL_CALIDAD = 'https://drive.google.com/drive/folders/PEGAR_LINK_CARPETA_CALIDAD';
 // ================================================
 
-// Cumpleaños — agregar nombre, día y mes
-const CUMPLEANOS = [
-  {nombre:'María Rosa Suárez', cargo:'Secretaría', dia:17, mes:3},
-  {nombre:'Carlos López', cargo:'Mesa de entradas', dia:24, mes:3},
-  {nombre:'Ana González', cargo:'Área jurídica', dia:3, mes:4},
-  {nombre:'Pablo Fernández', cargo:'Administración', dia:11, mes:4},
-  {nombre:'Laura Martínez', cargo:'Área jurídica', dia:28, mes:4},
-];
+let CUMPLEANOS = [];
 
 // Fecha actual
 const hoy = new Date();
@@ -717,17 +755,6 @@ const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto'
 const dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
 document.getElementById('hdate').textContent = dias[hoy.getDay()]+' '+hoy.getDate()+' de '+meses[hoy.getMonth()]+' de '+hoy.getFullYear();
 
-// Aviso cumpleaños
-const cumpleHoy = CUMPLEANOS.find(c => c.dia === hoy.getDate() && c.mes === (hoy.getMonth()+1));
-if(cumpleHoy){
-  document.getElementById('cumpleAviso').style.display='flex';
-  document.getElementById('cumpleNombre').textContent = cumpleHoy.nombre;
-  document.getElementById('cumpleNews').style.display='block';
-  document.getElementById('cumpleTitulo').textContent = '¡Hoy cumple años '+cumpleHoy.nombre+'!';
-  document.getElementById('cumpleArea').textContent = cumpleHoy.cargo+' · ¡Felicitala/o!';
-  document.getElementById('cumpleFecha').textContent = 'Hoy · '+hoy.getDate()+' '+meses[hoy.getMonth()]+' '+hoy.getFullYear();
-  document.getElementById('bdToday1') && (document.getElementById('bdToday1').textContent='¡Hoy!');
-}
 
 function goSection(name){
   document.getElementById('homeView').style.display='none';
@@ -895,6 +922,137 @@ function cargarSubrogancias(){
     });
 }
 cargarSubrogancias();
+
+// ====== CUMPLEAÑOS Y NOVEDADES DESDE PLANILLA ======
+const CSV_CUMPLES   = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRJGt-HoccS3xnd4Pi8CjqI_9g4gno5pPeJEHQ7sRAu-kgQy5Xa1JVzQTX2xU4G2OB31c1uLakYE_ax/pub?gid=1198342145&single=true&output=csv';
+const CSV_NOVEDADES = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRJGt-HoccS3xnd4Pi8CjqI_9g4gno5pPeJEHQ7sRAu-kgQy5Xa1JVzQTX2xU4G2OB31c1uLakYE_ax/pub?gid=1843648607&single=true&output=csv';
+const DIAS_AVISO = 7;
+
+function diaMes(s){
+  if(!s) return null;
+  const p = s.trim().split(/[\/\-\.]/);
+  if(p.length < 2) return null;
+  const d = parseInt(p[0],10), m = parseInt(p[1],10);
+  if(isNaN(d)||isNaN(m)||m<1||m>12||d<1||d>31) return null;
+  return {dia:d, mes:m};
+}
+
+// días que faltan hasta el próximo cumpleaños (0 = hoy)
+function faltan(c){
+  const hoy = new Date(); hoy.setHours(0,0,0,0);
+  let f = new Date(hoy.getFullYear(), c.mes-1, c.dia);
+  if(f < hoy) f = new Date(hoy.getFullYear()+1, c.mes-1, c.dia);
+  return Math.round((f-hoy)/86400000);
+}
+
+function cargarCumples(){
+  fetch(CSV_CUMPLES)
+    .then(r=>{ if(!r.ok) throw 0; return r.text(); })
+    .then(txt=>{
+      CUMPLEANOS = parseCSV(txt).slice(1).map(f=>{
+        const dm = diaMes(f[1]);
+        return dm ? {nombre:(f[0]||'').trim(), dia:dm.dia, mes:dm.mes} : null;
+      }).filter(c=>c && c.nombre);
+      pintarCumples();
+    })
+    .catch(()=>{
+      const l = document.getElementById('cumpleLista');
+      if(l) l.innerHTML = '<div class="sub-vacio">No se pudo cargar la lista de cumpleaños.</div>';
+    });
+}
+
+function pintarCumples(){
+  const hoy = new Date();
+  const deHoy = CUMPLEANOS.filter(c=>c.dia===hoy.getDate() && c.mes===(hoy.getMonth()+1));
+
+  // aviso en portada y en novedades
+  if(deHoy.length){
+    const nombres = deHoy.map(c=>c.nombre).join(' y ');
+    const av = document.getElementById('cumpleAviso');
+    if(av){ av.style.display='flex'; document.getElementById('cumpleNombre').textContent = nombres; }
+    const nw = document.getElementById('cumpleNews');
+    if(nw){
+      nw.style.display='block';
+      document.getElementById('cumpleTitulo').textContent = deHoy.length>1
+        ? '¡Hoy cumplen años '+nombres+'!' : '¡Hoy cumple años '+nombres+'!';
+      document.getElementById('cumpleArea').textContent = '¡Salúdalos!';
+      document.getElementById('cumpleFecha').textContent = 'Hoy · '+hoy.getDate()+' '+meses[hoy.getMonth()];
+    }
+  }
+
+  // próximos DIAS_AVISO días
+  const prox = CUMPLEANOS.map(c=>({...c, f:faltan(c)}))
+                         .filter(c=>c.f>0 && c.f<=DIAS_AVISO)
+                         .sort((a,b)=>a.f-b.f);
+  const box = document.getElementById('novProximos');
+  if(box && prox.length){
+    box.style.display='block';
+    document.getElementById('novProximosTxt').innerHTML = prox.map(c=>
+      '<div class="prox-linea"><span class="prox-dia">'+
+      (c.f===1 ? 'mañana' : 'en '+c.f+' días')+
+      '</span><span>'+esc(c.nombre)+' · '+String(c.dia).padStart(2,'0')+' '+MESES[c.mes-1]+'</span></div>'
+    ).join('');
+  }
+
+  // listado completo del modal, agrupado por mes
+  const lista = document.getElementById('cumpleLista');
+  if(!lista) return;
+  if(!CUMPLEANOS.length){
+    lista.innerHTML = '<div class="sub-vacio">No hay cumpleaños cargados.</div>';
+    return;
+  }
+  let out = '';
+  for(let m=1; m<=12; m++){
+    const delMes = CUMPLEANOS.filter(c=>c.mes===m).sort((a,b)=>a.dia-b.dia);
+    if(!delMes.length) continue;
+    out += '<div class="bmonth">'+meses[m-1].charAt(0).toUpperCase()+meses[m-1].slice(1)+'</div>';
+    delMes.forEach(c=>{
+      const esHoy = c.dia===hoy.getDate() && c.mes===(hoy.getMonth()+1);
+      out += '<div class="brow"><div class="bav">'+esc(c.nombre.charAt(0))+'</div>'+
+             '<div class="bname">'+esc(c.nombre)+'</div>'+
+             '<div class="bdate">'+String(c.dia).padStart(2,'0')+' '+MESES[m-1]+'</div>'+
+             (esHoy ? '<span class="btoday">¡Hoy!</span>' : '')+'</div>';
+    });
+  }
+  lista.innerHTML = out;
+}
+
+function cargarNovedades(){
+  const cont = document.getElementById('newsList');
+  const load = document.getElementById('novCargando');
+  if(!cont) return;
+  fetch(CSV_NOVEDADES)
+    .then(r=>{ if(!r.ok) throw 0; return r.text(); })
+    .then(txt=>{
+      const filas = parseCSV(txt).slice(1);
+      const items = filas.map(f=>({
+        fecha:  aFecha(f[0]),
+        tipo:   (f[1]||'Aviso').trim(),
+        titulo: (f[2]||'').trim(),
+        detalle:(f[3]||'').trim()
+      })).filter(n=>n.titulo);
+      items.sort((a,b)=>(b.fecha?b.fecha.getTime():0)-(a.fecha?a.fecha.getTime():0));
+      if(load) load.remove();
+      if(!items.length){
+        cont.insertAdjacentHTML('beforeend','<div class="sub-vacio">No hay novedades publicadas por el momento.</div>');
+        return;
+      }
+      const clase = t => ['urgente','circular','aviso'].includes(t.toLowerCase().trim()) ? t.toLowerCase().trim() : 'aviso';
+      cont.insertAdjacentHTML('beforeend', items.map(n=>
+        '<div class="nitem"><div class="nhead">'+
+        '<span class="ntag '+clase(n.tipo)+'">'+esc(n.tipo)+'</span>'+
+        '<span class="ndate">'+(n.fecha?fmtFecha(n.fecha):'')+'</span></div>'+
+        '<div class="ntitle">'+esc(n.titulo)+'</div>'+
+        (n.detalle?'<div class="nbody">'+esc(n.detalle)+'</div>':'')+'</div>'
+      ).join(''));
+    })
+    .catch(()=>{
+      if(load) load.textContent = 'No se pudieron cargar las novedades.';
+    });
+}
+
+cargarCumples();
+cargarNovedades();
 </script>
 </body>
 </html>
