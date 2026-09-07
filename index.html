@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet"/>
+<meta name="googlebot" content="noindex, nofollow"/>
 <title>Portal OPS — Oficina Judicial de Procesos Sucesorios</title>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
 <style>
@@ -276,6 +278,22 @@ body{font-family:'Open Sans','Roboto',sans-serif;background:var(--cream);color:v
 @media(max-width:820px){}
 .prox-linea{display:flex;align-items:center;gap:9px;padding:5px 0;font-size:0.95rem;}
 .prox-dia{background:var(--gold-lt);color:var(--gold);font-weight:700;font-size:.82rem;padding:2px 9px;border-radius:9px;white-space:nowrap;}
+
+.que-es{background:#fff;border:1px solid rgba(4,44,83,.09);border-left:4px solid var(--blue);border-radius:12px;padding:1.15rem 1.3rem;margin-bottom:1.6rem;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.que-titulo{font-size:1.02rem;font-weight:700;color:var(--navy);margin-bottom:.75rem;}
+.que-fila{display:flex;gap:12px;align-items:flex-start;margin-bottom:.7rem;font-size:.95rem;color:#333;line-height:1.5;}
+.que-tag{flex-shrink:0;font-size:.76rem;font-weight:700;padding:3px 10px;border-radius:11px;text-transform:uppercase;letter-spacing:.03em;margin-top:2px;}
+.que-tag.instructivo{background:#E4F1FB;color:#0F5C99;}
+.que-tag.procedimiento{background:#EFEAFC;color:#5B3FBF;}
+.que-cierre{font-size:.92rem;color:#555;font-style:italic;border-top:1px solid rgba(4,44,83,.07);padding-top:.65rem;margin-top:.3rem;}
+.instr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:13px;margin-bottom:1.5rem;}
+.instr-card{background:#fff;border:1px solid rgba(4,44,83,.09);border-left:4px solid var(--ic,var(--blue));border-radius:11px;padding:1rem 1.15rem;text-decoration:none;display:block;transition:transform .15s,box-shadow .15s;box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.instr-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.09);}
+.instr-top{display:flex;align-items:center;gap:9px;margin-bottom:.4rem;flex-wrap:wrap;}
+.instr-nombre{font-size:1.02rem;font-weight:700;color:var(--navy);line-height:1.25;}
+.instr-desc{font-size:.9rem;color:#555;line-height:1.45;}
+.instr-abrir{font-size:.82rem;color:var(--blue);font-weight:600;margin-top:.55rem;}
+@media(max-width:560px){.instr-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -588,19 +606,22 @@ body{font-family:'Open Sans','Roboto',sans-serif;background:var(--cream);color:v
 
   <!-- INSTRUCTIVOS -->
   <div class="pane" id="p-instructivos">
-    <div class="sec-title">Instructivos</div>
-    <div class="sec-sub">Organizados por circuito · incluye Glosario SAE</div>
-    <div class="subsec">Circuitos</div>
-    <div class="grid" style="margin-bottom:1.2rem">
-      <div class="card" style="--card-color:#0F6E56"><div class="card-ico">📌</div><div class="card-name">Apertura de expediente</div><div class="card-info">Circuito de inicio</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Checklist inicial</div><div class="cd-item"><div class="cd-dot"></div>Documentación requerida</div></div></div>
-      <div class="card" style="--card-color:#185FA5"><div class="card-ico">📌</div><div class="card-name">Notificación a herederos</div><div class="card-info">Circuito de notificación</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Cédulas y edictos</div><div class="cd-item"><div class="cd-dot"></div>Notificación electrónica</div></div></div>
-      <div class="card" style="--card-color:#534AB7"><div class="card-ico">📌</div><div class="card-name">Audiencias</div><div class="card-info">Circuito de audiencias</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Convocatoria</div><div class="cd-item"><div class="cd-dot"></div>Labramiento de acta</div></div></div>
-      <div class="card" style="--card-color:#854F0B"><div class="card-ico">📌</div><div class="card-name">Cierre de expediente</div><div class="card-info">Circuito de cierre</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Documentación final</div><div class="cd-item"><div class="cd-dot"></div>Archivo físico y digital</div></div></div>
-      <div class="card" style="--card-color:#378ADD"><div class="card-ico">📌</div><div class="card-name">Sistema informático</div><div class="card-info">Circuito transversal</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Carga de expedientes</div><div class="cd-item"><div class="cd-dot"></div>Consultas y reportes</div></div></div>
-      <div class="card" style="--card-color:#1D9E75"><div class="card-ico">📌</div><div class="card-name">Gestión documental</div><div class="card-info">Circuito transversal</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Escaneo y nomenclatura</div><div class="cd-item"><div class="cd-dot"></div>Carga en Drive</div></div></div>
+    <div class="sec-title">Instructivos y procedimientos</div>
+    <div class="sec-sub">Organizados por área · incluye Glosario SAE</div>
+
+    <div class="que-es">
+      <div class="que-titulo">¿Qué encontrás acá?</div>
+      <div class="que-fila"><span class="que-tag instructivo">Instructivo</span>
+        <div>Explica <strong>cómo hacer una tarea concreta</strong>, paso a paso. Responde a la pregunta «¿cómo se hace esto?».</div></div>
+      <div class="que-fila"><span class="que-tag procedimiento">Procedimiento propio</span>
+        <div>Describe un <strong>circuito completo</strong>: qué se hace, en qué orden, quién interviene en cada etapa y qué se obtiene al final. Responde a «¿cómo funciona este proceso de principio a fin?».</div></div>
+      <div class="que-cierre">En pocas palabras: el procedimiento es el recorrido completo; el instructivo es el detalle de uno de sus pasos.</div>
     </div>
+
+    <div id="instrGrid"><div class="sub-vacio">Cargando instructivos…</div></div>
+
     <div class="subsec">Glosario SAE</div>
-    <a class="open-link" href="https://docs.google.com/spreadsheets/d/1EQOqBYrC9HphYYugRVH8ktp0RGFGo7X8ZQFCaSnfWC4/edit" target="_blank">📖 Abrir Glosario SAE en Google Sheets</a>
+    <a class="open-link" href="https://docs.google.com/spreadsheets/d/1EQOqBYrC9HphYYugRVH8ktp0RGFGo7X8ZQFCaSnfWC4/edit" target="_blank" rel="noopener">📖 Abrir Glosario SAE en Google Sheets</a>
   </div>
 
   <!-- FORMACIÓN -->
@@ -1053,6 +1074,55 @@ function cargarNovedades(){
 
 cargarCumples();
 cargarNovedades();
+
+// ====== INSTRUCTIVOS DESDE PLANILLA ======
+const CSV_INSTRUCTIVOS = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRJGt-HoccS3xnd4Pi8CjqI_9g4gno5pPeJEHQ7sRAu-kgQy5Xa1JVzQTX2xU4G2OB31c1uLakYE_ax/pub?gid=688930227&single=true&output=csv';
+const COLORES_AREA = ['#0077C8','#0C8599','#6741D9','#0F9960','#E87500','#C2255C','#1098AD','#2F9E44'];
+
+function cargarInstructivos(){
+  const g = document.getElementById('instrGrid');
+  if(!g) return;
+  fetch(CSV_INSTRUCTIVOS)
+    .then(r=>{ if(!r.ok) throw 0; return r.text(); })
+    .then(txt=>{
+      const items = parseCSV(txt).slice(1).map(f=>({
+        area:   (f[0]||'').trim(),
+        tipo:   (f[1]||'').trim(),
+        nombre: (f[2]||'').trim(),
+        desc:   (f[3]||'').trim().replace(/\s*\n\s*/g,' '),
+        link:   (f[4]||'').trim()
+      })).filter(i=>i.nombre);
+      if(!items.length){
+        g.innerHTML = '<div class="sub-vacio">No hay instructivos cargados.</div>';
+        return;
+      }
+      const areas = [];
+      items.forEach(i=>{ if(!areas.includes(i.area)) areas.push(i.area); });
+      let out = '';
+      areas.forEach((a,idx)=>{
+        const col = COLORES_AREA[idx % COLORES_AREA.length];
+        const delArea = items.filter(i=>i.area===a);
+        out += '<div class="subsec">'+esc(a||'Sin área')+'</div><div class="instr-grid">';
+        out += delArea.map(i=>{
+          const esProc = i.tipo.toUpperCase().includes('PROCEDIMIENTO');
+          const tag = '<span class="que-tag '+(esProc?'procedimiento':'instructivo')+'">'+esc(i.tipo||'Instructivo')+'</span>';
+          const abre = i.link ? '<div class="instr-abrir">Abrir documento ↗</div>' : '';
+          const cont = '<div class="instr-top">'+tag+'</div>'+
+                       '<div class="instr-nombre">'+esc(i.nombre)+'</div>'+
+                       (i.desc?'<div class="instr-desc">'+esc(i.desc)+'</div>':'')+abre;
+          return i.link
+            ? '<a class="instr-card" style="--ic:'+col+'" href="'+esc(i.link)+'" target="_blank" rel="noopener">'+cont+'</a>'
+            : '<div class="instr-card" style="--ic:'+col+'">'+cont+'</div>';
+        }).join('');
+        out += '</div>';
+      });
+      g.innerHTML = out;
+    })
+    .catch(()=>{
+      g.innerHTML = '<div class="sub-vacio">No se pudieron cargar los instructivos.</div>';
+    });
+}
+cargarInstructivos();
 </script>
 </body>
 </html>
