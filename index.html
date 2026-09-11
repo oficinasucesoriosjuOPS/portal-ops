@@ -294,6 +294,16 @@ body{font-family:'Open Sans','Roboto',sans-serif;background:var(--cream);color:v
 .instr-desc{font-size:.9rem;color:#555;line-height:1.45;}
 .instr-abrir{font-size:.82rem;color:var(--blue);font-weight:600;margin-top:.55rem;}
 @media(max-width:560px){.instr-grid{grid-template-columns:1fr;}}
+
+.ind-bloque{background:#fff;border:1px solid rgba(4,44,83,.09);border-radius:12px;padding:1.1rem 1.2rem;margin-bottom:1.4rem;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.ind-cab{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;margin-bottom:.9rem;}
+.ind-titulo{font-size:1.08rem;font-weight:700;color:var(--navy);margin-bottom:3px;}
+.ind-desc{font-size:.92rem;color:#555;line-height:1.4;}
+.ind-abrir{font-size:.86rem;font-weight:600;color:var(--blue);text-decoration:none;white-space:nowrap;flex-shrink:0;padding-top:3px;}
+.ind-abrir:hover{text-decoration:underline;}
+.ind-marco{border:1px solid rgba(4,44,83,.10);border-radius:9px;overflow:auto;background:#fff;}
+.ind-marco iframe{width:100%;min-width:760px;height:520px;border:0;display:block;}
+@media(max-width:820px){.ind-marco iframe{height:430px;}}
 </style>
 </head>
 <body>
@@ -360,7 +370,7 @@ body{font-family:'Open Sans','Roboto',sans-serif;background:var(--cream);color:v
       <div class="sc-top"><div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><rect x="5" y="12" width="3.5" height="7" rx="1"/><rect x="10.2" y="8" width="3.5" height="11" rx="1"/><rect x="15.5" y="4" width="3.5" height="15" rx="1"/></svg></div><div class="sc-name">Indicadores</div></div>
       <div class="sc-items">
         <div class="sc-item"><div class="sc-dot"></div>Promedios mensuales</div>
-        <div class="sc-item"><div class="sc-dot"></div>Power BI · Tasas de riesgo operativa</div>
+        <div class="sc-item"><div class="sc-dot"></div>Tasa de error · Riesgo operativo</div>
       </div>
     </div>
 
@@ -583,25 +593,32 @@ body{font-family:'Open Sans','Roboto',sans-serif;background:var(--cream);color:v
   <!-- INDICADORES -->
   <div class="pane" id="p-indicadores">
     <div class="sec-title">Indicadores de gestión</div>
-    <div class="sec-sub">Actualizado mensualmente · Fuente: Drive OPS</div>
-    <div class="stats">
-      <div class="scard"><div class="slabel">Expedientes activos</div><div class="sval">1.284</div><div class="schg up">↑ +4,2% vs mes anterior</div></div>
-      <div class="scard"><div class="slabel">Resueltos este mes</div><div class="sval">86</div><div class="schg up">↑ +12% vs objetivo</div></div>
-      <div class="scard"><div class="slabel">Tiempo prom. resolución</div><div class="sval">47d</div><div class="schg dn">↓ mejoró 3 días</div></div>
-      <div class="scard"><div class="slabel">Audiencias programadas</div><div class="sval">23</div><div class="schg">Próximos 15 días</div></div>
-      <div class="scard"><div class="slabel">Tasa de resolución</div><div class="sval">78%</div><div class="schg up">↑ Meta: 75%</div></div>
+    <div class="sec-sub">Se actualizan automáticamente al cargarse los datos del mes</div>
+    <div class="link-note"><span>📊</span> <div>Los cuadros se actualizan solos: reflejan la información cargada en las planillas de indicadores de la Oficina. Si un mes aparece vacío, es porque todavía no se cargaron sus datos.</div></div>
+    <div class="ind-bloque">
+      <div class="ind-cab">
+        <div><div class="ind-titulo">Indicadores mensuales</div>
+        <div class="ind-desc">Duración promedio de los circuitos A Proveer y Control, contrastada con el objetivo anual.</div></div>
+        <a class="ind-abrir" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQPRjN411I6j8sCXQLDT3RsFMFSJBLJEvPAwIqRlf_Dg_sRKqrUki3uAm9x-w5UlH8h-M_FAK16YRfS/pubhtml?gid=1707728564&single=true" target="_blank" rel="noopener">Ver en pantalla completa ↗</a>
+      </div>
+      <div class="ind-marco"><iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQPRjN411I6j8sCXQLDT3RsFMFSJBLJEvPAwIqRlf_Dg_sRKqrUki3uAm9x-w5UlH8h-M_FAK16YRfS/pubhtml?gid=1707728564&single=true&widget=true&headers=false&chrome=false" title="Indicadores mensuales" loading="lazy"></iframe></div>
     </div>
-    <div class="subsec">Promedios mensuales</div>
-    <a class="open-link" href="https://docs.google.com/spreadsheets/d/1B6mJyb_JN3C6WOCOv_IPs_Tk36VL_IT4XwidyqCb8LM/edit" target="_blank">📊 Abrir planilla de indicadores en Google Sheets</a>
-    <div class="subsec">Power BI</div>
-    <div class="link-grid" style="margin-bottom:1.2rem">
-      <a class="link-card" href="#" target="_blank"><div class="link-ico">📈</div><div><div class="link-name">Dashboard Power BI</div><div class="link-desc">Tablero de indicadores interactivo</div></div><div class="link-arrow">↗</div></a>
+    <div class="ind-bloque">
+      <div class="ind-cab">
+        <div><div class="ind-titulo">Tasa de error · A Proveer y Control</div>
+        <div class="ind-desc">Errores detectados en los circuitos de proveído y control.</div></div>
+        <a class="ind-abrir" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQPRjN411I6j8sCXQLDT3RsFMFSJBLJEvPAwIqRlf_Dg_sRKqrUki3uAm9x-w5UlH8h-M_FAK16YRfS/pubhtml?gid=1821340773&single=true" target="_blank" rel="noopener">Ver en pantalla completa ↗</a>
+      </div>
+      <div class="ind-marco"><iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQPRjN411I6j8sCXQLDT3RsFMFSJBLJEvPAwIqRlf_Dg_sRKqrUki3uAm9x-w5UlH8h-M_FAK16YRfS/pubhtml?gid=1821340773&single=true&widget=true&headers=false&chrome=false" title="Tasa de error · A Proveer y Control" loading="lazy"></iframe></div>
     </div>
-    <div class="subsec">Tasas de riesgo operativa</div>
-    <div class="link-grid">
-      <a class="link-card" href="#" target="_blank"><div class="link-ico">⚠️</div><div><div class="link-name">Matriz de riesgo operativo</div><div class="link-desc">Tasas y umbrales vigentes</div></div><div class="link-arrow">↗</div></a>
+    <div class="ind-bloque">
+      <div class="ind-cab">
+        <div><div class="ind-titulo">Riesgo operativo · ausentismo y despacho</div>
+        <div class="ind-desc">Correlación entre la tasa de ausentismo y la duración del despacho.</div></div>
+        <a class="ind-abrir" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQPRjN411I6j8sCXQLDT3RsFMFSJBLJEvPAwIqRlf_Dg_sRKqrUki3uAm9x-w5UlH8h-M_FAK16YRfS/pubhtml?gid=209706349&single=true" target="_blank" rel="noopener">Ver en pantalla completa ↗</a>
+      </div>
+      <div class="ind-marco"><iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQPRjN411I6j8sCXQLDT3RsFMFSJBLJEvPAwIqRlf_Dg_sRKqrUki3uAm9x-w5UlH8h-M_FAK16YRfS/pubhtml?gid=209706349&single=true&widget=true&headers=false&chrome=false" title="Riesgo operativo · ausentismo y despacho" loading="lazy"></iframe></div>
     </div>
-    <div class="info-bar" style="margin-top:1rem"><span>ℹ️</span> Reemplazá los links de Power BI y Riesgo Operativo con los links reales una vez que los tengas disponibles.</div>
   </div>
 
   <!-- INSTRUCTIVOS -->
