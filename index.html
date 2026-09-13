@@ -304,6 +304,34 @@ body{font-family:'Open Sans','Roboto',sans-serif;background:var(--cream);color:v
 .ind-marco{border:1px solid rgba(4,44,83,.10);border-radius:9px;overflow:auto;background:#fff;}
 .ind-marco iframe{width:100%;min-width:760px;height:520px;border:0;display:block;}
 @media(max-width:820px){.ind-marco iframe{height:430px;}}
+
+.aporte{display:flex;gap:13px;align-items:flex-start;background:linear-gradient(to right,#FFF9E6,#FFFDF5);border:1px solid #F0DFA8;border-left:4px solid #E0A800;border-radius:11px;padding:1.05rem 1.2rem;margin:1.5rem 0;font-size:.95rem;color:#333;line-height:1.5;}
+.aporte-ico{font-size:22px;flex-shrink:0;line-height:1.2;}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:13px;margin-bottom:1.4rem;}
+.form-card{background:#fff;border:1px solid rgba(4,44,83,.09);border-left:4px solid var(--fc,var(--blue));border-radius:11px;padding:1rem 1.15rem;text-decoration:none;display:block;transition:transform .15s,box-shadow .15s;box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.form-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.09);}
+.form-nombre{font-size:1rem;font-weight:700;color:var(--navy);line-height:1.25;margin-bottom:.3rem;}
+.form-desc{font-size:.89rem;color:#555;line-height:1.45;}
+.form-abrir{font-size:.82rem;color:var(--blue);font-weight:600;margin-top:.5rem;}
+@media(max-width:560px){.form-grid{grid-template-columns:1fr;}}
+
+.dict-filtros{display:flex;gap:.5rem;flex-wrap:wrap;margin:.9rem 0 1.2rem;}
+.dfil{background:#fff;border:1px solid #cbd5e1;color:#475569;font-family:inherit;font-size:.92rem;font-weight:600;padding:.45rem 1rem;border-radius:20px;cursor:pointer;transition:.15s;}
+.dfil:hover{border-color:var(--blue);color:var(--blue);}
+.dfil.activo{background:var(--blue);border-color:var(--blue);color:#fff;}
+.dict-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:13px;}
+.dict-card{background:#fff;border:1px solid rgba(4,44,83,.09);border-left:4px solid var(--dc,var(--blue));border-radius:11px;padding:1.05rem 1.15rem;box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.dict-org{display:inline-block;font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding:3px 9px;border-radius:10px;background:var(--dcl,#E4F1FB);color:var(--dc,var(--blue));margin-bottom:.5rem;}
+.dict-caratula{font-size:.98rem;font-weight:700;color:var(--navy);line-height:1.3;margin-bottom:.3rem;}
+.dict-meta{font-size:.83rem;color:#64748b;margin-bottom:.5rem;display:flex;gap:.7rem;flex-wrap:wrap;}
+.dict-tema{font-size:.86rem;font-weight:600;color:#475569;margin-bottom:.4rem;}
+.dict-extracto{font-size:.9rem;color:#333;line-height:1.5;}
+.dict-extracto.corto{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;}
+.dict-mas{background:none;border:0;color:var(--blue);font-family:inherit;font-size:.84rem;font-weight:600;cursor:pointer;padding:.35rem 0 0;}
+.dict-mas:hover{text-decoration:underline;}
+.dict-link{display:inline-block;font-size:.84rem;color:var(--blue);font-weight:600;text-decoration:none;margin-top:.6rem;}
+.dict-link:hover{text-decoration:underline;}
+@media(max-width:560px){.dict-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -345,7 +373,7 @@ body{font-family:'Open Sans','Roboto',sans-serif;background:var(--cream);color:v
       <div class="sc-top"><div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M3 21h18M4 10h16M5 10V21M9.5 10V21M14.5 10V21M19 10V21M12 3l9 5H3l9-5z"/></svg></div><div class="sc-name">Institucional</div></div>
       <div class="sc-items">
         <div class="sc-item"><div class="sc-dot"></div>Organigrama · Circuitos · Actas</div>
-        <div class="sc-item"><div class="sc-dot"></div>Directorio · Cumpleaños · Emergencias</div>
+        <div class="sc-item"><div class="sc-dot"></div>Directorio · Cumpleaños</div>
       </div>
     </div>
 
@@ -384,7 +412,7 @@ body{font-family:'Open Sans','Roboto',sans-serif;background:var(--cream);color:v
     <div class="sec-card" style="--sc:#7C6BC4;--scp:#E6E6FA" onclick="goSection('formacion')">
       <div class="sc-top"><div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M12 4l10 5-10 5-10-5 10-5z"/><path d="M5 11v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"/><path d="M22 9v6"/></svg></div><div class="sc-name">Formación</div></div>
       <div class="sc-items">
-        <div class="sc-item"><div class="sc-dot"></div>Inducción · Cursos · Videoteca</div>
+        <div class="sc-item"><div class="sc-dot"></div>Cursos · Videoteca</div>
         <div class="sc-item"><div class="sc-dot"></div>Biblioteca digital · Buenas prácticas</div>
       </div>
     </div>
@@ -454,7 +482,6 @@ body{font-family:'Open Sans','Roboto',sans-serif;background:var(--cream);color:v
       <div class="card" style="--card-color:#0F6E56" onclick="openModal('identidad')"><div class="card-ico">🎯</div><div class="card-name">Misión, visión, valores y calidad</div><div class="card-info">Ver detalle →</div></div>
       <div class="card" style="--card-color:#854F0B" onclick="openModal('directorio')"><div class="card-ico">👥</div><div class="card-name">Directorio de personal</div><div class="card-info">Ver listado →</div></div>
       <div class="card" style="--card-color:#BA7517" onclick="openModal('cumples')"><div class="card-ico">🎂</div><div class="card-name">Cumpleaños</div><div class="card-info">Ver fechas →</div></div>
-      <div class="card" style="--card-color:#a32d2d" onclick="openModal('emergencias')"><div class="card-ico">🚨</div><div class="card-name">Contactos de emergencia</div><div class="card-info">Ver listado →</div></div>
     </div>
     <div class="subsec">Actas</div>
     <div class="drive-box">
@@ -567,27 +594,10 @@ body{font-family:'Open Sans','Roboto',sans-serif;background:var(--cream);color:v
   <!-- DICTAMENES -->
   <div class="pane" id="p-dictamenes">
     <div class="sec-title">Dictámenes</div>
-    <div class="sec-sub">Dictámenes por organismo · carpeta Drive</div>
-    <a class="open-link" href="https://drive.google.com/drive/folders/1ynOGygeBzquWJI5BSup9e_CTp9A-s89u" target="_blank">📁 Abrir carpeta de Dictámenes en Drive</a>
-    <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab('fiscal',this,'dict')">Agente Fiscal</button>
-      <button class="tab-btn" onclick="switchTab('auditoria',this,'dict')">Auditoría Contable</button>
-      <button class="tab-btn" onclick="switchTab('menores',this,'dict')">Asesor de Menores</button>
-    </div>
-    <div class="tab-pane active" id="dict-fiscal">
-      <div class="frow hrow"><span style="width:16px"></span><span class="fname">Archivo</span><span class="fdate">Fecha</span></div>
-      <div class="frow" onclick="window.open('https://drive.google.com/drive/folders/1ynOGygeBzquWJI5BSup9e_CTp9A-s89u','_blank')"><span>📄</span><span class="fname">Dictamen_Fiscal_Exp2043-2026.pdf</span><span class="fdate">10 mar 2026</span></div>
-      <div class="frow" onclick="window.open('https://drive.google.com/drive/folders/1ynOGygeBzquWJI5BSup9e_CTp9A-s89u','_blank')"><span>📄</span><span class="fname">Dictamen_Fiscal_Exp1987-2026.pdf</span><span class="fdate">02 mar 2026</span></div>
-    </div>
-    <div class="tab-pane" id="dict-auditoria">
-      <div class="frow hrow"><span style="width:16px"></span><span class="fname">Archivo</span><span class="fdate">Fecha</span></div>
-      <div class="frow" onclick="window.open('https://drive.google.com/drive/folders/1ynOGygeBzquWJI5BSup9e_CTp9A-s89u','_blank')"><span>📄</span><span class="fname">Dictamen_Auditoria_Exp2043-2026.pdf</span><span class="fdate">12 mar 2026</span></div>
-    </div>
-    <div class="tab-pane" id="dict-menores">
-      <div class="frow hrow"><span style="width:16px"></span><span class="fname">Archivo</span><span class="fdate">Fecha</span></div>
-      <div class="frow" onclick="window.open('https://drive.google.com/drive/folders/1ynOGygeBzquWJI5BSup9e_CTp9A-s89u','_blank')"><span>📄</span><span class="fname">Dictamen_Menores_Exp1987-2026.pdf</span><span class="fdate">05 mar 2026</span></div>
-    </div>
-    <div class="info-bar" style="margin-top:9px"><span>ℹ️</span> Los nombres de archivo son de ejemplo. Al hacer clic se abre la carpeta real en Drive donde están los dictámenes.</div>
+    <div class="sec-sub">Criterios y antecedentes por organismo</div>
+    <div class="link-note"><span>📜</span> <div>Extractos de dictámenes organizados por organismo emisor. Se registra el criterio adoptado; el texto completo se abre desde el enlace de cada ficha.</div></div>
+    <div class="dict-filtros" id="dictFiltros"></div>
+    <div id="dictGrid"><div class="sub-vacio">Cargando dictámenes…</div></div>
   </div>
 
   <!-- INDICADORES -->
@@ -644,19 +654,15 @@ body{font-family:'Open Sans','Roboto',sans-serif;background:var(--cream);color:v
   <!-- FORMACIÓN -->
   <div class="pane" id="p-formacion">
     <div class="sec-title">Formación</div>
-    <div class="sec-sub">Capacitaciones, inducción y recursos del personal</div>
-    <a class="open-link" href="https://drive.google.com/drive/folders/1bcC8KijFf4TVAF6ZEe32WHBNNAloNmSq" target="_blank">📁 Abrir carpeta de Formación en Drive</a>
-    <div class="subsec">Personal nuevo</div>
-    <div class="grid">
-      <div class="card" style="--card-color:#0C447C"><div class="card-ico">🚀</div><div class="card-name">Inducción</div><div class="card-info">Bienvenida y primeros pasos</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Guía de bienvenida</div><div class="cd-item"><div class="cd-dot"></div>Presentación de la OPS</div><div class="cd-item"><div class="cd-dot"></div>Accesos y sistemas</div></div></div>
+    <div class="sec-sub">Capacitaciones y recursos del personal</div>
+    <div class="link-note"><span>🎓</span> <div>Material de consulta y capacitación de la Oficina: grabaciones de jornadas, cursos, códigos, manuales y recomendaciones de trabajo. Se actualiza a medida que se incorpora material nuevo.</div></div>
+    <div id="formGrid"><div class="sub-vacio">Cargando material…</div></div>
+    <div class="aporte">
+      <div class="aporte-ico">💡</div>
+      <div><strong>¿Tenés material para compartir?</strong><br/>Si contás con un artículo de doctrina, un video explicativo o material de capacitación que consideres de utilidad para toda la Oficina, comunicate con el <strong>Equipo Implementador de Calidad</strong> para incorporarlo al portal.</div>
     </div>
-    <div class="subsec">Capacitación continua</div>
-    <div class="grid" style="margin-bottom:1.2rem">
-      <div class="card" style="--card-color:#185FA5"><div class="card-ico">🎓</div><div class="card-name">Cursos internos</div><div class="card-info">Organizados por la OPS</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Presenciales</div><div class="cd-item"><div class="cd-dot"></div>Virtuales</div></div></div>
-      <div class="card" style="--card-color:#534AB7"><div class="card-ico">🎥</div><div class="card-name">Videoteca</div><div class="card-info">Jornadas y seminarios</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Grabaciones de jornadas</div><div class="cd-item"><div class="cd-dot"></div>Seminarios externos</div></div></div>
-      <div class="card" style="--card-color:#0F6E56"><div class="card-ico">📖</div><div class="card-name">Biblioteca digital</div><div class="card-info">Códigos y manuales</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Códigos vigentes</div><div class="cd-item"><div class="cd-dot"></div>Manuales de procedimiento</div></div></div>
-      <div class="card" style="--card-color:#1D9E75"><div class="card-ico">🌟</div><div class="card-name">Buenas prácticas</div><div class="card-info">Experiencias y recomendaciones</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Atención al ciudadano</div><div class="cd-item"><div class="cd-dot"></div>Gestión de expedientes</div></div></div>
-    </div>
+    <div class="subsec">Carpeta completa</div>
+    <a class="open-link" href="https://drive.google.com/drive/folders/1bcC8KijFf4TVAF6ZEe32WHBNNAloNmSq" target="_blank" rel="noopener">📁 Abrir carpeta de Formación en Drive</a>
   </div>
 
   <!-- SUBROGANCIAS -->
@@ -753,18 +759,6 @@ body{font-family:'Open Sans','Roboto',sans-serif;background:var(--cream);color:v
   </div>
 </div>
 
-<div class="modal-info" id="modal-emergencias">
-  <div class="minfo-box">
-    <div class="minfo-head"><h3>Contactos de emergencia</h3><button class="minfo-close" onclick="closeModal('emergencias')">✕</button></div>
-    <div class="minfo-body">
-      <div class="erow"><div class="eico">🏥</div><div><div class="ename">SAME</div><div class="erole">Emergencias médicas</div><div class="ephone">107</div></div></div>
-      <div class="erow"><div class="eico">🚒</div><div><div class="ename">Bomberos</div><div class="erole">Incendio / evacuación</div><div class="ephone">100</div></div></div>
-      <div class="erow"><div class="eico">👮</div><div><div class="ename">Policía</div><div class="erole">Seguridad</div><div class="ephone">911</div></div></div>
-      <div class="erow"><div class="eico">👤</div><div><div class="ename">Dra. Andrea Rodríguez</div><div class="erole">Jefa de la Oficina</div><div class="ephone">+54 11 4000-1234</div></div></div>
-      <div class="erow"><div class="eico">🏢</div><div><div class="ename">Seguridad del edificio</div><div class="erole">Guardia interna</div><div class="ephone">Interno 101</div></div></div>
-    </div>
-  </div>
-</div>
 
 <div class="modal-info" id="modal-directorio">
   <div class="minfo-box">
@@ -1140,6 +1134,136 @@ function cargarInstructivos(){
     });
 }
 cargarInstructivos();
+
+// ====== FORMACIÓN DESDE PLANILLA ======
+const CSV_FORMACION = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRJGt-HoccS3xnd4Pi8CjqI_9g4gno5pPeJEHQ7sRAu-kgQy5Xa1JVzQTX2xU4G2OB31c1uLakYE_ax/pub?gid=418507918&single=true&output=csv';
+const ICONO_CAT = {'videoteca':'🎬','cursos':'📚','biblioteca digital':'📖','buenas prácticas':'⭐','buenas practicas':'⭐'};
+const COLOR_CAT = ['#6741D9','#0077C8','#0F9960','#E87500','#C2255C','#1098AD'];
+
+function cargarFormacion(){
+  const g = document.getElementById('formGrid');
+  if(!g) return;
+  fetch(CSV_FORMACION)
+    .then(r=>{ if(!r.ok) throw 0; return r.text(); })
+    .then(txt=>{
+      const items = parseCSV(txt).slice(1).map(f=>({
+        cat:    (f[0]||'').trim(),
+        titulo: (f[1]||'').trim(),
+        desc:   (f[2]||'').trim().replace(/\s*\n\s*/g,' '),
+        link:   (f[3]||'').trim()
+      })).filter(i=>i.titulo);
+      if(!items.length){
+        g.innerHTML = '<div class="sub-vacio">Todavía no hay material cargado.</div>';
+        return;
+      }
+      const cats = [];
+      items.forEach(i=>{ if(!cats.includes(i.cat)) cats.push(i.cat); });
+      g.innerHTML = cats.map((c,idx)=>{
+        const col = COLOR_CAT[idx % COLOR_CAT.length];
+        const ico = ICONO_CAT[c.toLowerCase()] || '📄';
+        const dela = items.filter(i=>i.cat===c);
+        return '<div class="subsec">'+ico+' '+esc(c||'Sin categoría')+'</div><div class="form-grid">'+
+          dela.map(i=>{
+            const cont = '<div class="form-nombre">'+esc(i.titulo)+'</div>'+
+                         (i.desc?'<div class="form-desc">'+esc(i.desc)+'</div>':'')+
+                         (i.link?'<div class="form-abrir">Abrir ↗</div>':'');
+            return i.link
+              ? '<a class="form-card" style="--fc:'+col+'" href="'+esc(i.link)+'" target="_blank" rel="noopener">'+cont+'</a>'
+              : '<div class="form-card" style="--fc:'+col+'">'+cont+'</div>';
+          }).join('')+'</div>';
+      }).join('');
+    })
+    .catch(()=>{
+      g.innerHTML = '<div class="sub-vacio">No se pudo cargar el material de formación.</div>';
+    });
+}
+cargarFormacion();
+
+// ====== DICTÁMENES DESDE PLANILLA ======
+const CSV_DICTAMENES = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRJGt-HoccS3xnd4Pi8CjqI_9g4gno5pPeJEHQ7sRAu-kgQy5Xa1JVzQTX2xU4G2OB31c1uLakYE_ax/pub?gid=320999591&single=true&output=csv';
+const PAL_ORG = [['#0077C8','#E4F1FB'],['#6741D9','#EFEAFC'],['#0F9960','#E3F6EC'],['#E87500','#FDF0E0'],['#C2255C','#FDECF2'],['#0C8599','#E2F4F7']];
+let DICTAMENES = [], ORGS = [];
+
+function cargarDictamenes(){
+  const g = document.getElementById('dictGrid');
+  if(!g) return;
+  fetch(CSV_DICTAMENES)
+    .then(r=>{ if(!r.ok) throw 0; return r.text(); })
+    .then(txt=>{
+      DICTAMENES = parseCSV(txt).slice(1).map(f=>{
+        const org = (f[0]||'').trim();
+        const otro = (f[1]||'').trim();
+        return {
+          org: org,
+          etiqueta: (org.toUpperCase()==='OTROS' && otro) ? otro : org,
+          exp:  (f[2]||'').trim(),
+          car:  (f[3]||'').trim(),
+          fecha:(f[4]||'').trim(),
+          tema: (f[5]||'').trim(),
+          extr: (f[6]||'').trim().replace(/\s*\n\s*/g,' '),
+          link: (f[7]||'').trim()
+        };
+      }).filter(d=>d.car||d.tema||d.extr);
+
+      if(!DICTAMENES.length){
+        g.innerHTML = '<div class="sub-vacio">Todavía no hay dictámenes cargados.</div>';
+        return;
+      }
+      ORGS = [];
+      DICTAMENES.forEach(d=>{ if(d.org && !ORGS.includes(d.org)) ORGS.push(d.org); });
+      const fb = document.getElementById('dictFiltros');
+      if(fb){
+        fb.innerHTML = '<button class="dfil activo" onclick="filtrarDict(\'\',this)">Todos ('+DICTAMENES.length+')</button>' +
+          ORGS.map(o=>'<button class="dfil" onclick="filtrarDict(\''+o.replace(/'/g,"\\'")+'\',this)">'+esc(o)+'</button>').join('');
+      }
+      pintarDict('');
+    })
+    .catch(()=>{
+      g.innerHTML = '<div class="sub-vacio">No se pudieron cargar los dictámenes.</div>';
+    });
+}
+
+function pintarDict(org){
+  const g = document.getElementById('dictGrid');
+  const lista = org ? DICTAMENES.filter(d=>d.org===org) : DICTAMENES;
+  if(!lista.length){
+    g.innerHTML = '<div class="sub-vacio">No hay dictámenes de este organismo.</div>';
+    return;
+  }
+  g.innerHTML = '<div class="dict-grid">' + lista.map((d,i)=>{
+    const idx = Math.max(0, ORGS.indexOf(d.org));
+    const [c,cl] = PAL_ORG[idx % PAL_ORG.length];
+    const meta = [];
+    if(d.exp)   meta.push('<span>Expte. '+esc(d.exp)+'</span>');
+    if(d.fecha) meta.push('<span>'+esc(d.fecha)+'</span>');
+    const largo = d.extr.length > 230;
+    const eid = 'dx'+i;
+    return '<div class="dict-card" style="--dc:'+c+';--dcl:'+cl+'">'+
+      '<span class="dict-org">'+esc(d.etiqueta||'Sin organismo')+'</span>'+
+      (d.car?'<div class="dict-caratula">'+esc(d.car)+'</div>':'')+
+      (meta.length?'<div class="dict-meta">'+meta.join('')+'</div>':'')+
+      (d.tema?'<div class="dict-tema">'+esc(d.tema)+'</div>':'')+
+      (d.extr?'<div class="dict-extracto'+(largo?' corto':'')+'" id="'+eid+'">'+esc(d.extr)+'</div>':'')+
+      (largo?'<button class="dict-mas" onclick="verMas(\''+eid+'\',this)">Ver más</button>':'')+
+      (d.link?'<a class="dict-link" href="'+esc(d.link)+'" target="_blank" rel="noopener">Abrir dictamen completo ↗</a>':'')+
+      '</div>';
+  }).join('') + '</div>';
+}
+
+function filtrarDict(org,btn){
+  document.querySelectorAll('.dfil').forEach(b=>b.classList.remove('activo'));
+  if(btn) btn.classList.add('activo');
+  pintarDict(org);
+}
+
+function verMas(id,btn){
+  const e = document.getElementById(id);
+  if(!e) return;
+  const abierto = !e.classList.contains('corto');
+  e.classList.toggle('corto', abierto);
+  btn.textContent = abierto ? 'Ver más' : 'Ver menos';
+}
+cargarDictamenes();
 </script>
 </body>
 </html>
