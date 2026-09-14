@@ -332,6 +332,8 @@ body{font-family:'Open Sans','Roboto',sans-serif;background:var(--cream);color:v
 .dict-link{display:inline-block;font-size:.84rem;color:var(--blue);font-weight:600;text-decoration:none;margin-top:.6rem;}
 .dict-link:hover{text-decoration:underline;}
 @media(max-width:560px){.dict-grid{grid-template-columns:1fr;}}
+
+.link-tag{font-size:.78rem;color:#7a5c00;background:#FFF6D6;border-radius:8px;padding:2px 8px;display:inline-block;margin-top:.4rem;font-weight:600;}
 </style>
 </head>
 <body>
@@ -372,8 +374,8 @@ body{font-family:'Open Sans','Roboto',sans-serif;background:var(--cream);color:v
     <div class="sec-card" style="--sc:#0077C8;--scp:#E4F1FB" onclick="goSection('institucional')">
       <div class="sc-top"><div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M3 21h18M4 10h16M5 10V21M9.5 10V21M14.5 10V21M19 10V21M12 3l9 5H3l9-5z"/></svg></div><div class="sc-name">Institucional</div></div>
       <div class="sc-items">
-        <div class="sc-item"><div class="sc-dot"></div>Organigrama · Circuitos · Actas</div>
-        <div class="sc-item"><div class="sc-dot"></div>Directorio · Cumpleaños</div>
+        <div class="sc-item"><div class="sc-dot"></div>Organigrama · Identidad · Actas</div>
+        <div class="sc-item"><div class="sc-dot"></div>Misión, visión y calidad</div>
       </div>
     </div>
 
@@ -389,8 +391,8 @@ body{font-family:'Open Sans','Roboto',sans-serif;background:var(--cream);color:v
     <div class="sec-card" style="--sc:#7B5FC4;--scp:#F0EBFA" onclick="goSection('dictamenes')">
       <div class="sc-top"><div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8l-5-5z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></div><div class="sc-name">Dictámenes</div></div>
       <div class="sc-items">
-        <div class="sc-item"><div class="sc-dot"></div>Agente Fiscal</div>
-        <div class="sc-item"><div class="sc-dot"></div>Auditoría Contable · Asesor Menores</div>
+        <div class="sc-item"><div class="sc-dot"></div>Agente Fiscal · Defensor Oficial</div>
+        <div class="sc-item"><div class="sc-dot"></div>Auditoría del PJ · Otros</div>
       </div>
     </div>
 
@@ -431,11 +433,20 @@ body{font-family:'Open Sans','Roboto',sans-serif;background:var(--cream);color:v
         <div class="sc-item"><div class="sc-dot"></div>Mediación · Buzón · Reclamos</div>
       </div>
     </div>
+      <div class="sec-card" style="--sc:#C2255C;--scp:#FDECF2" onclick="goSection('herramientas')">
+        <div class="sc-top"><div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4.6 4.6 0 006.1 6.1L18 15.2l-9.2 5.4a2 2 0 01-2.5-.3l-.6-.6a2 2 0 01-.3-2.5L10.8 8l3.9-1.7z"/><path d="M14.7 6.3L11.5 3a3.2 3.2 0 00-4.5 0L4.5 5.5a3.2 3.2 0 000 4.5l3.3 3.2"/></svg></div>
+          <div class="sc-name">Herramientas digitales</div></div>
+        <div class="sc-items">
+          <div class="sc-item"><div class="sc-dot"></div>Trazabilidad de testamentos</div>
+          <div class="sc-item"><div class="sc-dot"></div>Reclamos de profesionales</div>
+        </div>
+      </div>
+
 
     <div class="sec-card sc-card-calidad" style="--sc:#C79A00;--scp:#FFF6D6" onclick="pedirPassword()">
       <div class="sc-top"><div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M11 17l-3.5 2.5a1.6 1.6 0 01-2.3-2.2L9 12"/><path d="M13 17l3.5 2.5a1.6 1.6 0 002.3-2.2L15 12"/><path d="M4 8l3-3 5 2 5-2 3 3-3.5 4.5-4.5-1.5-4.5 1.5L4 8z"/></svg></div><div class="sc-name">Equipo de Calidad</div></div>
       <div class="sc-items">
-        <div class="sc-item"><div class="sc-dot"></div>Acceso exclusivo · 3 personas</div>
+        <div class="sc-item"><div class="sc-dot"></div>Acceso exclusivo con clave</div>
         <div class="sc-item"><div class="sc-dot"></div>Normas de calidad</div>
       </div>
     </div>
@@ -469,18 +480,22 @@ body{font-family:'Open Sans','Roboto',sans-serif;background:var(--cream);color:v
   <div class="pane" id="p-institucional">
     <div class="sec-title">Institucional</div>
     <div class="sec-sub">Estructura, identidad y documentos organizacionales</div>
+
     <div class="subsec">Documentos institucionales</div>
-    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:1.3rem;">
-      <a class="open-link open-link-outline" href="https://drive.google.com/file/d/1AygN2mGzM23ccZacB_BtGiO0T1fci-WY/view" target="_blank">📄 Documento 1</a>
-      <a class="open-link open-link-outline" href="https://drive.google.com/file/d/1_wHOc_kAr78Teb2SF9ckB47Gsee0pe1z/view" target="_blank">📄 Documento 2</a>
-      <a class="open-link open-link-outline" href="https://docs.google.com/document/d/122swG7bN7abmq8qETufEhkY4M4g43tKiqlAYUmEbn3M/edit" target="_blank">📝 Documento 3</a>
+    <div class="link-note"><span>📑</span> <div>Ordenados de lo general a lo particular: primero el marco de calidad del Poder Judicial, luego los documentos propios de la Oficina.</div></div>
+    <div class="link-grid" style="margin-bottom:1.4rem">
+      <a class="link-card" href="https://docs.google.com/document/d/1jvElMGPeBCsw8liJgofwlt693jHR4fslyi-9hez54hE/edit" target="_blank" rel="noopener"><div class="link-ico">📋</div><div><div class="link-name">Política de calidad del Poder Judicial</div><div class="link-desc">Marco general de calidad · mapa de procesos</div></div><div class="link-arrow">↗</div></a>
+      <a class="link-card" href="https://docs.google.com/document/d/1tJEmpTpkPg3Tp6CSiCDyUEaCyXMmixM1DTwcuvuZMm4/edit" target="_blank" rel="noopener"><div class="link-ico">📘</div><div><div class="link-name">Manual de política de calidad</div><div class="link-desc">Documento marco del sistema de gestión</div></div><div class="link-arrow">↗</div></a>
+      <a class="link-card" href="https://docs.google.com/document/d/12culIgr8pdFleEw3nXEQhrI0CrYRKCJ9SbERKJBfEDk/edit" target="_blank" rel="noopener"><div class="link-ico">🎯</div><div><div class="link-name">Alcance del sistema de calidad en la OPS</div><div class="link-desc">Qué procesos comprende el sistema en la Oficina</div></div><div class="link-arrow">↗</div></a>
+      <a class="link-card" href="https://docs.google.com/document/d/108SoYgu6zqvDwRpYuZ21DKBZ_ijg6HXOxEL4PgAKoTs/edit" target="_blank" rel="noopener"><div class="link-ico">🧭</div><div><div class="link-name">Misión, visión y valores</div><div class="link-desc">Identidad institucional de la Oficina</div></div><div class="link-arrow">↗</div></a>
+      <a class="link-card" href="https://docs.google.com/document/d/1b9wCMcTlbgdzq6j8xVXAphxGpgkgr7XBS4DlxBpixKE/edit" target="_blank" rel="noopener"><div class="link-ico">📌</div><div><div class="link-name">Objetivos anuales</div><div class="link-desc">Metas de gestión del período</div></div><div class="link-arrow">↗</div></a>
+      <a class="link-card" href="https://docs.google.com/presentation/d/1nZMoV3sfOCYm4if-ll4Y0WkM60fS5Ff8/edit" target="_blank" rel="noopener"><div class="link-ico">🏛️</div><div><div class="link-name">Organigrama OPS</div><div class="link-desc">Estructura y dependencias funcionales</div></div><div class="link-arrow">↗</div></a>
+      <a class="link-card" href="https://docs.google.com/document/d/1Xx4JjFC_2W-YmKraNgk5Pq9pDzGcBTvj/edit" target="_blank" rel="noopener"><div class="link-ico">🤝</div><div><div class="link-name">Manual de convivencia</div><div class="link-desc">Pautas de convivencia y trato en la Oficina</div></div><div class="link-arrow">↗</div></a>
+      <a class="link-card" href="https://docs.google.com/document/d/1XARWS-Ch5fxT5cq_0EhBTQOxc-UNThrB/edit" target="_blank" rel="noopener"><div class="link-ico">♿</div><div><div class="link-name">Protocolo de atención inclusiva y accesibilidad</div><div class="link-desc">Pautas de atención inclusiva y accesibilidad en la Oficina</div></div><div class="link-arrow">↗</div></a>
     </div>
-    <div class="subsec">Organización</div>
+
+    <div class="subsec">Cumpleaños del personal</div>
     <div class="grid">
-      <div class="card" style="--card-color:#185FA5"><div class="card-ico">🏛️</div><div class="card-name">Organigrama OPS</div><div class="card-info">Estructura y dependencias</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Estructura jerárquica</div><div class="cd-item"><div class="cd-dot"></div>Dependencias funcionales</div></div></div>
-      <div class="card" style="--card-color:#378ADD"><div class="card-ico">🔄</div><div class="card-name">Circuitos por áreas</div><div class="card-info">Flujos de trabajo</div><div class="card-drop"><div class="cd-item"><div class="cd-dot"></div>Mesa de entradas</div><div class="cd-item"><div class="cd-dot"></div>Área jurídica</div><div class="cd-item"><div class="cd-dot"></div>Administración</div></div></div>
-      <div class="card" style="--card-color:#0F6E56" onclick="openModal('identidad')"><div class="card-ico">🎯</div><div class="card-name">Misión, visión, valores y calidad</div><div class="card-info">Ver detalle →</div></div>
-      <div class="card" style="--card-color:#854F0B" onclick="openModal('directorio')"><div class="card-ico">👥</div><div class="card-name">Directorio de personal</div><div class="card-info">Ver listado →</div></div>
       <div class="card" style="--card-color:#BA7517" onclick="openModal('cumples')"><div class="card-ico">🎂</div><div class="card-name">Cumpleaños</div><div class="card-info">Ver fechas →</div></div>
     </div>
     <div class="subsec">Actas</div>
@@ -504,10 +519,7 @@ body{font-family:'Open Sans','Roboto',sans-serif;background:var(--cream);color:v
       </div>
       <div class="frow hrow"><span style="width:16px"></span><span class="fname">Archivo</span><span style="width:110px;font-size:10.5px;font-weight:600;color:var(--muted)">Tipo</span><span class="fdate">Fecha</span></div>
       <div id="listaActas">
-        <div class="frow" data-tipo="equipo" data-per="2026-03" onclick="window.open('https://drive.google.com/drive/folders/1OXsq60R-khyMQb430W299i1GEiOl_QyO','_blank')"><span>📋</span><span class="fname">Acta_EQUIPO_14-03-2026.pdf</span><span class="ftipo equipo">Equipo completo</span><span class="fdate">14 mar 2026</span></div>
-        <div class="frow" data-tipo="referentes" data-per="2026-03" onclick="window.open('https://drive.google.com/drive/folders/1OXsq60R-khyMQb430W299i1GEiOl_QyO','_blank')"><span>📋</span><span class="fname">Acta_REFERENTES_07-03-2026.pdf</span><span class="ftipo referentes">Referentes</span><span class="fdate">07 mar 2026</span></div>
-        <div class="frow" data-tipo="jueces" data-per="2026-03" onclick="window.open('https://drive.google.com/drive/folders/1OXsq60R-khyMQb430W299i1GEiOl_QyO','_blank')"><span>📋</span><span class="fname">Acta_JUECES_03-03-2026.pdf</span><span class="ftipo jueces">Con jueces</span><span class="fdate">03 mar 2026</span></div>
-        <div class="frow" data-tipo="equipo" data-per="2026-02" onclick="window.open('https://drive.google.com/drive/folders/1OXsq60R-khyMQb430W299i1GEiOl_QyO','_blank')"><span>📋</span><span class="fname">Acta_EQUIPO_28-02-2026.pdf</span><span class="ftipo equipo">Equipo completo</span><span class="fdate">28 feb 2026</span></div>
+        <div class="sub-vacio" style="padding:1.3rem">Todavía no hay actas cargadas en el portal. Podés consultarlas en la <a href="https://drive.google.com/drive/folders/1OXsq60R-khyMQb430W299i1GEiOl_QyO" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600">carpeta de Drive</a>.</div>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 1rem;border-top:1px solid var(--border);background:var(--cream);">
         <span style="font-size:11px;color:var(--muted)" id="actasCount">4 actas · mostrando todas</span>
@@ -666,6 +678,24 @@ body{font-family:'Open Sans','Roboto',sans-serif;background:var(--cream);color:v
   </div>
 
   <!-- SUBROGANCIAS -->
+  <div class="pane" id="p-herramientas">
+    <div class="sec-title">Herramientas digitales</div>
+    <div class="sec-sub">Aplicaciones de gestión de la Oficina</div>
+    <div class="link-note"><span>🛠️</span> <div>A diferencia del resto del portal, en esta sección no se consultan documentos: son aplicaciones donde se registra y hace seguimiento de trámites.</div></div>
+    <div class="link-grid">
+      <a class="link-card" href="https://script.google.com/macros/s/AKfycbxMGzkqc2mWag73ItY_wJASFTeTBATCPTLazsv9W-NnWAoS_xJrygI9XLifX6UPTnBp/exec" target="_blank" rel="noopener">
+        <div class="link-ico">📜</div>
+        <div><div class="link-name">Trazabilidad de testamentos</div>
+        <div class="link-desc">Seguimiento de testamentos desde su presentación hasta su resolución.</div></div>
+        <div class="link-arrow">↗</div></a>
+      <a class="link-card" href="https://script.google.com/macros/s/AKfycbxjv9JQId8yWlejo40p4R1ip9xahY5r54HBmEnXGwqXYznfgjGY3OwCqmofgVNqxRquyA/exec" target="_blank" rel="noopener">
+        <div class="link-ico">📣</div>
+        <div><div class="link-name">Reclamos de profesionales</div>
+        <div class="link-desc">Registro de reclamos y sugerencias presentados por profesionales. Los del personal de la OPS se cargan en Links de registros.</div>
+        <div class="link-tag">Uso de Mesa de Atención, Administración y Equipo de Calidad</div></div>
+        <div class="link-arrow">↗</div></a>
+    </div>
+  </div>
   <div class="pane" id="p-subrogancias">
     <div class="sec-title">Subrogancias</div>
     <div class="sec-sub">Registro de subrogancias activas, programadas e historial</div>
@@ -738,17 +768,6 @@ body{font-family:'Open Sans','Roboto',sans-serif;background:var(--cream);color:v
 </div>
 
 <!-- MODALES INFO -->
-<div class="modal-info" id="modal-identidad">
-  <div class="minfo-box">
-    <div class="minfo-head"><h3>Identidad institucional</h3><button class="minfo-close" onclick="closeModal('identidad')">✕</button></div>
-    <div class="minfo-body">
-      <div class="mtabs"><button class="mtab active" onclick="mtab('mision',this)">Misión y visión</button><button class="mtab" onclick="mtab('valores',this)">Valores</button><button class="mtab" onclick="mtab('calidad',this)">Política de calidad</button></div>
-      <div class="msec active" id="ms-mision"><div class="blabel">Misión</div><div class="btext">Garantizar la gestión eficiente y transparente de los procesos sucesorios, asegurando el acceso equitativo de los ciudadanos a sus derechos patrimoniales.</div><div class="blabel">Visión</div><div class="btext">Ser una oficina de referencia en gestión judicial, reconocida por su profesionalismo, celeridad y compromiso con el servicio público.</div></div>
-      <div class="msec" id="ms-valores"><div class="vrow"><span style="font-size:15px">⚖️</span><div><strong style="font-size:12px">Transparencia</strong><div style="font-size:11px;color:var(--muted);margin-top:1px">Honestidad y claridad en cada proceso</div></div></div><div class="vrow"><span style="font-size:15px">🤝</span><div><strong style="font-size:12px">Compromiso</strong><div style="font-size:11px;color:var(--muted);margin-top:1px">Responsabilidad ante cada ciudadano</div></div></div><div class="vrow"><span style="font-size:15px">🎯</span><div><strong style="font-size:12px">Eficiencia</strong><div style="font-size:11px;color:var(--muted);margin-top:1px">Optimizamos tiempos sin perder calidad</div></div></div><div class="vrow"><span style="font-size:15px">🌱</span><div><strong style="font-size:12px">Mejora continua</strong><div style="font-size:11px;color:var(--muted);margin-top:1px">Aprendemos y nos adaptamos constantemente</div></div></div></div>
-      <div class="msec" id="ms-calidad"><div class="btext" style="margin-bottom:10px">La OPS se compromete a brindar un servicio de excelencia orientado a la mejora continua.</div><div class="citem"><span>✔️</span><div>Cumplimiento de plazos procesales</div></div><div class="citem"><span>✔️</span><div>Atención respetuosa y accesible</div></div><div class="citem"><span>✔️</span><div>Gestión documental ordenada y trazable</div></div><div class="citem"><span>✔️</span><div>Capacitación permanente del personal</div></div></div>
-    </div>
-  </div>
-</div>
 
 <div class="modal-info" id="modal-cumples">
   <div class="minfo-box">
@@ -760,18 +779,6 @@ body{font-family:'Open Sans','Roboto',sans-serif;background:var(--cream);color:v
 </div>
 
 
-<div class="modal-info" id="modal-directorio">
-  <div class="minfo-box">
-    <div class="minfo-head"><h3>Directorio de personal</h3><button class="minfo-close" onclick="closeModal('directorio')">✕</button></div>
-    <div class="minfo-body">
-      <div class="erow"><div class="eico">👤</div><div><div class="ename">Dra. Andrea Rodríguez</div><div class="erole">Jefa de la Oficina</div><div class="ephone">andrea.rodriguez@ops.gob.ar · Int. 200</div></div></div>
-      <div class="erow"><div class="eico">👤</div><div><div class="ename">Lic. Marcelo González</div><div class="erole">Administración</div><div class="ephone">marcelo.gonzalez@ops.gob.ar · Int. 201</div></div></div>
-      <div class="erow"><div class="eico">👤</div><div><div class="ename">María Rosa Suárez</div><div class="erole">Secretaría</div><div class="ephone">mrosa.suarez@ops.gob.ar · Int. 202</div></div></div>
-      <div class="erow"><div class="eico">👤</div><div><div class="ename">Carlos López</div><div class="erole">Mesa de entradas</div><div class="ephone">carlos.lopez@ops.gob.ar · Int. 203</div></div></div>
-      <div class="erow"><div class="eico">👤</div><div><div class="ename">Ana González</div><div class="erole">Área jurídica</div><div class="ephone">ana.gonzalez@ops.gob.ar · Int. 210</div></div></div>
-    </div>
-  </div>
-</div>
 
 <script>
 // ====== CONTRASEÑA CALIDAD — CAMBIAR AQUÍ ======
