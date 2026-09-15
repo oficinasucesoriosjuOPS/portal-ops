@@ -366,7 +366,7 @@ body{font-family:'Open Sans','Roboto',sans-serif;background:var(--cream);color:v
   <div class="sec-grid">
 
     <div class="sec-card" style="--sc:#DA291C;--scp:#FCE9E7" onclick="goSection('novedades')">
-      <div class="sc-top"><div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div><div class="sc-name">Novedades y avisos <span class="sc-badge">3</span></div></div>
+      <div class="sc-top"><div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div><div class="sc-name">Novedades y avisos <span class="sc-badge" id="novBadge" style="display:none"></span></div></div>
       <div class="sc-items">
         <div class="sc-item"><div class="sc-dot"></div>Circulares · Comunicados</div>
         <div class="sc-item"><div class="sc-dot"></div>Avisos · Cumpleaños del día</div>
@@ -1029,9 +1029,19 @@ function cargarNovedades(){
         fecha:  aFecha(f[0]),
         tipo:   (f[1]||'Aviso').trim(),
         titulo: (f[2]||'').trim(),
-        detalle:(f[3]||'').trim()
-      })).filter(n=>n.titulo);
+        detalle:(f[3]||'').trim(),
+        mostrar:(f[4]||'').trim()
+      })).filter(n=>{
+        if(!n.titulo) return false;
+        const m = n.mostrar.toUpperCase().replace(/[ÍI]/g,'I');
+        return m==='' || m==='SI' || m==='S' || m==='X' || m==='TRUE' || m==='VERDADERO';
+      });
       items.sort((a,b)=>(b.fecha?b.fecha.getTime():0)-(a.fecha?a.fecha.getTime():0));
+      const badge=document.getElementById('novBadge');
+      if(badge){
+        if(items.length){badge.textContent=items.length;badge.style.display='';}
+        else badge.style.display='none';
+      }
       if(load) load.remove();
       if(!items.length){
         cont.insertAdjacentHTML('beforeend','<div class="sub-vacio">No hay novedades publicadas por el momento.</div>');
